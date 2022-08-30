@@ -1,0 +1,45 @@
+
+
+.home-outer-contanier{
+    width: 100%;
+    background-color: lightgray;
+    display: flex;
+    justify-content: center;
+}
+
+.home-inner-container1{
+    width:90%;
+    background-color: white;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+}
+.home-inner-container2{
+    width: 95%;
+}
+.home-icon{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.home-search{
+    margin-top: 10px;
+    width: 500px;
+
+}
+
+.home-searchbar-div{
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.home-tab{
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+    /* background-color: aqua; */
+
+}
