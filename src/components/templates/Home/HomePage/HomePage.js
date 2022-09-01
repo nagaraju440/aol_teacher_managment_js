@@ -1,5 +1,5 @@
 import React from 'react';
-import UiButton from '../UiCore/FormComponent/UiButton/UiButton';
+import UiButton from '../../../UiCore/FormComponent/UiButton/UiButton';
 import "./HomePage.css"
 import Box from '@mui/material/Box';
 import PropTypes from 'prop-types';
@@ -76,8 +76,8 @@ function HomePage(props) {
                             <UiButton text={"Far East"}></UiButton> */}
 
                             <Box sx={{ width: '100%' }}>
-                                <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                                    <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" className='home-tab'>
+                                <Box sx={{ borderBottom: 1, borderColor: 'divider',width:'100%',backgroundColor:'red' }}>
+                                    <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" className='home-tab' style={{display:"flex",width:"60%",justifyContent:"space-between",backgroundColor:'green'}}>
                                     {/* <div > */}
                                         <Tab label="All Regions" {...a11yProps(0)} style={{backgroundColor:value==0?"#1976D2":"#D3D3D3",color:value==0?"white":"black"}} />
                                         <Tab label="LATAM" {...a11yProps(1)} style={{backgroundColor:value==1?"#1976D2":"#D3D3D3",color:value==1?"white":"black"}}/>
