@@ -1,0 +1,51 @@
+
+
+.full-container{
+    width:100vw;
+    height: 100vh;
+    /* background-color:red; */
+}
+*{
+    margin:0px;
+    padding:0px;
+    box-sizing: border-box;
+}
+.navbar-container{
+    width:100%;
+    height:8%;
+    /* background-color:blue; */
+    padding-left: 15px;
+    padding-right: 30px;
+    display: flex;
+    align-items: center;
+    /* justify-content:center; */
+}
+.navbar-left{
+    display: flex; 
+    flex-direction: flex-start;
+    /* background-color:olive; */
+    align-items: center;
+    gap:10px;
+    justify-content:center;
+}
+.aolimage{
+    width:150px;
+    height:65px;
+} 
+.navbar-content{
+    display: flex;
+    flex-direction:row; 
+    justify-content:space-between;
+    /* background-color:white;  */
+    width:100%;
+}
+.navbar-right{
+   display: flex;
+   flex-direction:row; 
+   align-items:center;
+   gap:10px;
+}
+.nav-right-content{
+    color:grey;
+    font-size: 18px;
+}
