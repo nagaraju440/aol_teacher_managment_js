@@ -1,0 +1,27 @@
+.Tabbar_mainbox
+{
+    display: flex;
+    justify-content: center !important;
+    align-items: center !important;
+    background-color:#D3D3D3;
+}
+.Tabbar_boxContainer
+{
+    justify-content: center !important;
+    align-items: center !important;
+    width: 80% !important;
+    background-color:white;
+    padding:10px,10px,10px,10px;
+    /* background-color:pink; */
+}
+ /* .MuiButtonBase-root-MuiTab-root{
+    all: unset !important;
+    font-size:20rem;
+    text-transform: uppercase;
+    /* color: red */
+    /* background-color:red */
+    /* height: 3px !important;
+    padding:none !important; */
+    /* background-color:#1976D2;
+    height: */
+  /* }  */
