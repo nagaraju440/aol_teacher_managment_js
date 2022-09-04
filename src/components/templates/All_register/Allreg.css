@@ -1,0 +1,24 @@
+.Background{
+    background-color: lightgray;
+
+}
+.AllReg-outer-contanier{
+    width:100%;
+    background-color: lightgray;
+    display: flex;
+    justify-content: center;
+}
+
+.AllReg-inner-container1{
+    width:90%;
+    background-color: white;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+}
+.AllReg-inner-container2{
+    width: 95%;
+}
+.All-Cards-Container{
+    padding-top: 10px;
+}
