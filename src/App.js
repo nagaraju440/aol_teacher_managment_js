@@ -17,7 +17,7 @@ function App() {
     //   <Route path="/homepage" element={<Home />} />
     // </Routes>
     // <HomePage></HomePage>
-    <Tabbar></Tabbar>
+    // <Tabbar></Tabbar>
     // <div>
     //   <Navbar/>
 
