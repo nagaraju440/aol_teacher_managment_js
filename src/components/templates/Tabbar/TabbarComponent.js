@@ -48,9 +48,9 @@ export default function BasicTabs() {
             display:'none'
           },
         }}  >
-          <Tab label="Home" {...a11yProps(0)}  style={{backgroundColor:value==0?"#1976D2":"white",color:value==0?"white":"black",borderRadius:5,fontSize:'0.750rem',minHeight:'18px'}}></Tab>
-          <Tab label="Teachers" {...a11yProps(1)} style={{backgroundColor:value==1?"#1976D2":"white",color:value==1?"white":"black",borderRadius:5,fontSize:'0.750rem',minHeight:'18px'}}/>
-          <Tab label="Program Types"{...a11yProps(2)} style={{backgroundColor:value==2?"#1976D2":"white",color:value==2?"white":"black",borderRadius:5,fontSize:'0.750rem',minHeight:'18px'}} />
+          <Tab label="Home" {...a11yProps(0)}  style={{backgroundColor:value==0?"#1976D2":"white",color:value==0?"white":"black",borderRadius:5,fontSize:'0.850rem',minHeight:'18px'}}></Tab>
+          <Tab label="Teachers" {...a11yProps(1)} style={{backgroundColor:value==1?"#1976D2":"white",color:value==1?"white":"black",borderRadius:5,fontSize:'0.850rem',minHeight:'18px'}}/>
+          <Tab label="Program Types"{...a11yProps(2)} style={{backgroundColor:value==2?"#1976D2":"white",color:value==2?"white":"black",borderRadius:5,fontSize:'0.850rem',minHeight:'18px'}} />
         </Tabs>
       </Box>
       <div style={{backgroundColor:"#d3d3d3",paddingTop:"10px"}}>
