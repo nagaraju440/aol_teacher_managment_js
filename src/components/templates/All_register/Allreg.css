@@ -1,26 +1,26 @@
 .Background{
-    background-color: lightgray;
+    /* background-color: white; */
     padding-top: 20px;
-
+   
 }
 .AllReg-outer-contanier{
     width:100%;
-    background-color: lightgray;
+    /* background-color: lightgray; */
     display: flex;
     justify-content: center;
 }
 
 .AllReg-inner-container1{
-    width:90%;
+    width:100%;
     background-color: white;
     border-radius: 5px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
 }
 .AllReg-inner-container2{
     width: 100%;
     font-size: 18px;
-    padding: 10px 15px;
+    padding: 15px 20px;
 }
 .All-Cards-Container{
     padding-top: 10px;

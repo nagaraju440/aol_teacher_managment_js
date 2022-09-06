@@ -1,12 +1,12 @@
 import React from 'react';
-import Navbar from './components/UiCore/Navbar/Navbar.js';
+// import Navbar from './components/UiCore/Navbar/Navbar.js';
 import { Routes, Route, Link } from "react-router-dom";
 import ForgotPassword from "./pages/forgetpassword";
-import NewPassword from "./pages/NewPassword";
+import NewPassword from "./pages/newpassword";
 import LoginPage from "./pages/login";
-import All_reg from './components/templates/All_register/Alreg'
-import Data_table from './components/templates/Data_table/data_table.js';
-import HomePage from "./pages/Home"
+// import All_reg from './components/templates/All_register/Alreg'
+// import Data_table from './components/templates/Data_table/data_table.js';
+// import HomePage from "./pages/Home"
 import './App.css'
 import Dashboard from './pages/dashboard.js';
 function App() {

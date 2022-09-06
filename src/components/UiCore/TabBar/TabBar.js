@@ -4,8 +4,7 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import './TabBar.css'
-import Home from '../../../pages/Home';
-// import Home from '../../../pages/home.js';
+import Home from '../../../pages/home'
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
   return (
@@ -54,8 +53,8 @@ export default function TabBar() {
           <Tab label="Program Types"{...a11yProps(2)} style={{backgroundColor:value==2?"#1976D2":"white",color:value==2?"white":"black",borderRadius:5,fontSize:'0.850rem',minHeight:'18px',fontWeight:'bold'}} />
         </Tabs>
       </Box>
-      <div style={{width:'99%',margin:'0px auto',marginTop:"20px",borderRadius:10}}>
-      <TabPanel  style={{backgroundColor:'white'}} value={value} index={0}>
+      {/* <div style={{width:'99%',margin:'0px auto',marginTop:"20px",borderRadius:10}}> */}
+      <TabPanel   value={value} index={0}>
        <Home/>
       </TabPanel>
       <TabPanel value={value} index={1}>
@@ -64,7 +63,7 @@ export default function TabBar() {
       <TabPanel value={value} index={2}>
         Item Three
       </TabPanel>
-      </div>
+      {/* </div> */}
     </Box>
     
     </div>

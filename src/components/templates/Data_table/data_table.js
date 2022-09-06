@@ -130,7 +130,7 @@ export default function Data_table() {
         hideFooter='true'
         onSelectionModelChange={(newSelection) => {
             console.log(newSelection, "hsdmhdkjwa");
-            setselection(newSelection,console.log(selection));
+            setselection(newSelection);
         }}
       />
     </div>
