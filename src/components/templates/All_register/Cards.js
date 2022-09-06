@@ -29,8 +29,45 @@ class Cards extends React.Component {
                     title:'Europe',
                     count:1001
                 },
+                {
+                    title:'Europe',
+                    count:1001
+                },
+                {
+                    title:'Europe',
+                    count:1001
+                },
+                {
+                    title:'Europe',
+                    count:1001
+                },
                
 
+            ],
+            Summary:[
+                {
+                    title:'Europe',
+                    count:1001
+                },
+                {
+                    title:'Europe',
+                    count:1001
+                },
+                
+            ],
+            SummarybyStatus:[
+                    {
+                        title:'Europe',
+                        count:1001
+                    },
+                    {
+                        title:'Europe',
+                        count:1001
+                    },
+                    {
+                        title:'Europe',
+                        count:1001
+                    },
             ]
         }
     }
@@ -43,12 +80,13 @@ class Cards extends React.Component {
            {/* 3 cards in a row */}
            <div className='card-1'>
            <div className='card-2-inner-container'>
-            <h5>Teachers Count By Region</h5>
+            <h5 className='cards-heading'>Teachers Count By Region</h5>
             <div className='bb'></div>
+            <div className='card-scroll'>
             {
             this.state.Region.map((l,i)=>{
                 return(
-            <div>
+            <div >
                 <div className="card-content">
                 <div className='cards-title'>{l.title}</div>
                 <div className='cards-count'>{l.count}</div>   
@@ -58,6 +96,7 @@ class Cards extends React.Component {
  )
 })
 }
+</div>
 
             </div>
            
@@ -65,11 +104,11 @@ class Cards extends React.Component {
            </div>
            <div className='card-2'>
             <div className='card-2-inner-container'>
-           <h5>Teachers Summary</h5>
+           <h5 className='cards-heading'>Teachers Summary</h5>
            {/* <div className='cards-border'></div> */}
            <div className='bb'></div>
             {
-            this.state.Region.map((l,i)=>{
+            this.state.Summary.map((l,i)=>{
                 return(
             <div>
                 <div className="card-content">
@@ -89,11 +128,11 @@ class Cards extends React.Component {
 
            <div className='card-3'>
            <div className='card-2-inner-container'>
-           <h5>Teachers Summary by Status</h5>
+           <h5 className='cards-heading'>Teachers Summary by Status</h5>
            {/* <div className='cards-border'>dfgd</div> */}
            <div className='bb'></div>
             {
-            this.state.Region.map((l,i)=>{
+            this.state.SummarybyStatus.map((l,i)=>{
                 return(
             <div>
                 <div className="card-content">

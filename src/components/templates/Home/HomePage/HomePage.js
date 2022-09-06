@@ -13,6 +13,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import Data_table from '../../Data_table/data_table';
+import AllReg from '../../All_register/Alreg';
 
 // import TabBar from '../../Tabbar/TabbarComponent';
 // import T
@@ -82,14 +83,15 @@ function HomePage(props) {
                         </div>
                         <hr className='hr-line' ></hr>
                         <Data_table/>
-                        <div>
-                        </div>
+                       
                         <div>
                         </div>
 
                     </div>
                 </div>
-
+                <div  className='summary-container' >
+                          <AllReg/>
+                       </div>
         </div>
     );
 }

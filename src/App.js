@@ -9,6 +9,13 @@ import React from 'react';
 import TabBar from './components/UiCore/TabBar/TabBar.js';
 // import HomePage from "./pages/Home"
 // import Data_table from './components/templates/Data_table/data_table'
+import { Routes, Route, Link } from "react-router-dom";
+import ForgotPassword from "./pages/forgetpassword";
+// import NewPassword from "./pages/newpassword";
+import LoginPage from "./pages/login";
+// import All_reg from './components/templates/All_register/Alreg'
+// import Data_table from './components/templates/Data_table/data_table.js';
+// import HomePage from "./pages/Home"
 import './App.css'
 // import Dashboard from './pages/dashboard.js';
 function App() {
@@ -28,7 +35,7 @@ function App() {
     // <Data_table/>
       // <Navbar/>
 // {/* <Data_table/> */}
-    // <AllReg/>
+    // <AllRe g/>
     // </div>
     // <Routes>
       /* <Route path="/" element={<LoginPage />} />

@@ -54,7 +54,7 @@ export default function TabBar() {
         </Tabs>
       </Box>
       <div  className="TabBar_TabPanelSection">
-      <TabPanel  style={{backgroundColor:'white'}} value={value} index={0}>
+      <TabPanel   value={value} index={0}>
        <Home/>
       </TabPanel>
       <TabPanel value={value} index={1}>
@@ -65,7 +65,6 @@ export default function TabBar() {
       </TabPanel>
       </div>
     </Box>
-    
     </div>
   );
 }
