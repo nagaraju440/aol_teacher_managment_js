@@ -43,7 +43,7 @@ function App() {
       <Route path="/forgotpassword" element={<ForgotPassword />} />
       <Route path="/newpassword" element={<NewPassword />} />
       <Route path="/homepage" element={<Home />} /> */
-    <TabBar></TabBar>
+    // <TabBar></TabBar>
     // </Routes>
     // <HomePage></HomePage>
   );
