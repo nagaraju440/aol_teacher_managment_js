@@ -33,7 +33,7 @@ const rows=data.data.map((row)=>{
         inactiveD:row.inactiveD
     }
 })
-export default function data_table() {
+export default function Data_table() {
     // const [selection, setselection] = useState([])
     // const [selection, setSelection] = useState()
     // const [selection, setSelection] = useState([])
