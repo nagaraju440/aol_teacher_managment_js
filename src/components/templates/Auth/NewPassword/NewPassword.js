@@ -14,8 +14,9 @@ const newPasswordSchema = yup.object().shape({
     .required()
     .matches(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-      "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
-    ),
+      "Must be a strong password with atleast 8 characters"
+    )
+    ,
   confirmpassword: yup
     .string()
     .oneOf([yup.ref("password"), null], "Passwords must match")

@@ -1,5 +1,6 @@
 .Background{
     background-color: lightgray;
+    padding-top: 20px;
 
 }
 .AllReg-outer-contanier{
@@ -17,8 +18,17 @@
     justify-content: center;
 }
 .AllReg-inner-container2{
-    width: 95%;
+    width: 100%;
+    font-size: 18px;
+    padding: 10px 15px;
 }
 .All-Cards-Container{
     padding-top: 10px;
+}
+@media screen and (max-width:760px) {
+   .AllReg-inner-container2  {
+justify-content: center;
+align-items: center;
+text-align: center;
+   } 
 }

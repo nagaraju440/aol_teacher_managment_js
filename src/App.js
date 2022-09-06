@@ -22,7 +22,7 @@ function App() {
     // <HomePage></HomePage>
     // <Tabbar></Tabbar>
     // <div>
-    <Home />
+    // <Home />
     // <Data_table/>
       // <Navbar/>
 // {/* <Data_table/> */}

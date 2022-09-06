@@ -1,73 +1,139 @@
-import React from 'react'
-// import { useState } from "react";
-import { DataGrid } from '@mui/x-data-grid';
-import data from './data.json'
+import React from "react";
+import { useState } from "react";
+import { DataGrid , ColDef, ValueGetterParams, GridColumnHeaderTitle, GridColumnHeaderSortIcon } from "@mui/x-data-grid";
+import data from "./data.json";
+import IconButton from '@mui/material/IconButton';
+import ClearIcon from '@mui/icons-material/Clear';
+import FilterListIcon from '@mui/icons-material/FilterList';
 console.log(data);
-const columns = [
-    { field: 'id', headerName: 'country', minWidth: 130,disableColumnMenu:true,},
-    { field: 'active', headerName: 'Active', minWidth: 150 ,headerAlign: 'center',align:'center',sortable:false,disableColumnMenu:true},
-    { field: 'inactiveNT', headerName: 'Inactive-Not Teaching', minWidth: 220,headerAlign: 'center',align:'center',sortable:false,disableColumnMenu:true},
-    {
-      field: 'inactiveNOrg',
-      headerName: 'Inactive-Not with Organization',
-      minWidth: 270,headerAlign: 'center',align:'center',sortable:false,disableColumnMenu:true
+const columns: ColDef[] =[
+  {
+    field: "id",
+    headerName: "Country",
+    minWidth: 130,
+    disableColumnMenu: true,
+    renderHeader: (params) => {
+      const { field, api, colDef } = params;
+      return (
+        <>
+          <GridColumnHeaderTitle
+            label={colDef.headerName || colDef.field}
+            description={colDef.description}
+            columnWidth={colDef.width}
+          />
+          {
+            (
+              <div className="MuiDataGrid-iconButtonContainer1">
+              <IconButton>
+              <FilterListIcon className="MuiDataGrid-sortIcon" />
+              </IconButton>
+              </div>
+            )
+
+          }
+        </>
+      );
     },
-    {
-        field: 'inactiveRKTM',
-        headerName: 'Inactive-returned Kriya tape & Manual',
-        minWidth: 320,headerAlign: 'center',align:'center',sortable:false,disableColumnMenu:true
-      },
-      {
-        field: 'inactiveD',
-        headerName: 'Inactive - Deceased',
-        minWidth: 220,headerAlign: 'center',align:'center',sortable:false,disableColumnMenu:true
-      },
-  ];
-const rows=data.data.map((row)=>{
-    return{
-        id:row.id,
-        active:row.active,
-        inactiveNT:row.inactiveNT,
-        inactiveNOrg:row.inactiveNOrg,
-        inactiveRKTM:row.inactiveRKTM,
-        inactiveD:row.inactiveD
-    }
-})
-export default function data_table() {
-    // const [selection, setselection] = useState([])
-    // const [selection, setSelection] = useState()
-    // const [selection, setSelection] = useState([])
+    // ColumnFilter:
+    disableColumnFilter:true
+  },
+  {
+    field: "active",
+    headerName: "Active",
+    minWidth: 170,
+    headerAlign: "center",
+    align: "center",
+    sortable: false,
+    disableColumnMenu: true,
+  },
+  {
+    field: "inactive",
+    headerName: "Inactive",
+    minWidth: 170,
+    headerAlign: "center",
+    align: "center",
+    sortable: false,
+    disableColumnMenu: true,
+  },
+  {
+    field: "viewonly",
+    headerName: "View Only",
+    minWidth: 170,
+    headerAlign: "center",
+    align: "center",
+    sortable: false,
+    disableColumnMenu: true,
+  },
+  {
+    field: "totalteachers",
+    headerName: "Total Teachers",
+    minWidth: 250,
+    headerAlign: "center",
+    align: "center",
+    sortable: false,
+    disableColumnMenu: true,
+  },
+];
+const rows = data.data.map((row) => {
+  return {
+    id: row.id,
+    active: row.active,
+    inactive: row.inactive,
+    viewonly: row.viewonly,
+    totalteachers: row.totalteachers,
+  };
+});
+export default function Data_table() {
+  const [selection, setselection] = useState([])
   return (
-    <div style={{ height: 400, width: '100%' }}>
-    <DataGrid
-    rows={rows}
-    columns={columns}
-    pageSize={5}
-    rowsPerPageOptions={[6]}
-    checkboxSelection
-      sx={{
-        '.MuiDataGrid-columnSeparator': {
-          display: 'none',
-        },
-        '&.MuiDataGrid-root': {
-          border: 'none',
-        },
-        '.MuiDataGrid-columnHeader':{
-            fontSize:16,
-            fontWeight:'bold'
-        },
-        '.MuiDataGrid-sortIcon': {
-            opacity: 'inherit !important',
-           },
-        '& .MuiDataGrid-iconButtonContainer':{
-            visibility: 'visible !important',
-        },
-      }}
-      onSelectionChange={(newSelection) => {
-        console.log(newSelection.rows,'hsdmhdkjwa');
-        // setSelection(newSelection.rows);
-    }}
-    />
-  </div>
-  )
+    <div style={{ height: 400, width: "100%" }}>
+      <DataGrid
+        rows={rows}
+        columns={columns}
+        pageSize={5}
+        rowsPerPageOptions={[6]}
+        checkboxSelection
+        sx={{
+          ".MuiDataGrid-columnSeparator": {
+            display: "none",
+          },
+          "&.MuiDataGrid-root": {
+            border: "none",
+          },
+          ".MuiDataGrid-columnHeader": {
+            fontSize: 16,
+            fontWeight: "bold",
+          },
+          ".MuiDataGrid-sortIcon": {
+            opacity: "inherit !important",
+            color:'black'
+          },
+          "& .MuiDataGrid-iconButtonContainer": {
+            visibility: "visible !important",
+          },
+          "& .css-1jbbcbn-MuiDataGrid-columnHeaderTitle":{
+            fontWeight:700,
+            fontSize:'14px'
+          },
+          "& .css-1pe4mpk-MuiButtonBase-root-MuiIconButton-root":{
+            color:'black'
+          },
+          '& .MuiDataGrid-iconButtonContainer': {
+            display:'none'
+          },
+          '& .MuiDataGrid-iconButtonContainer1':{
+            paddingLeft:'5px',
+            color:'black',
+          }
+
+        }}
+        hideFooter='true'
+        onSelectionModelChange={(newSelection) => {
+            console.log(newSelection, "hsdmhdkjwa");
+            setselection(newSelection,console.log(selection));
+        }}
+      />
+    </div>
+  );
 }
+
