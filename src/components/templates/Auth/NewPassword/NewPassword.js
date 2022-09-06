@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "../Global.module.css";
-import AOLlogo from "../AOLlogo.jpg";
-
+import AOLlogo from "../../../assets/images/aolLogo.png";
+import { Link } from "react-router-dom";
 import * as yup from "yup";
 import { VisibilityOff, Visibility } from "@mui/icons-material";
 import { InputAdornment, IconButton } from "@mui/material";
@@ -41,15 +41,14 @@ export default function NewPassword() {
             type={showPassword?"text":"password"}
             className={styles.input}
             variant={"outlined"}
-            InputProps={{
-              endAdornment:(
-                <InputAdornment position="end">
-              <IconButton onClick={()=>setShowPassword(!showPassword)} >
-                {showPassword?<VisibilityOff/>:<Visibility/>}
-              </IconButton>
-              </InputAdornment>
-              )
-            }}
+            endAdornment={(
+              <InputAdornment position="end">
+            <IconButton onClick={()=>setShowPassword(!showPassword)} >
+              {showPassword?<VisibilityOff/>:<Visibility/>}
+            </IconButton>
+            </InputAdornment>
+            )}
+            
           />
           <label className={styles.label}>Confirm Password</label>
           <InputFormFeild
@@ -59,19 +58,18 @@ export default function NewPassword() {
             
             className={styles.input}
             variant={"outlined"}
-            InputProps={{
-              endAdornment:(
-                <InputAdornment position="end">
-              <IconButton onClick={()=>setShowConfirmPassword(!showConfirmPassword)} >
-                {showConfirmPassword?<VisibilityOff/>:<Visibility/>}
-              </IconButton>
-              </InputAdornment>
-              )
-            }}
+            endAdornment={(
+              <InputAdornment position="end">
+            <IconButton onClick={()=>setShowConfirmPassword(!showConfirmPassword)} >
+              {showConfirmPassword?<VisibilityOff/>:<Visibility/>}
+            </IconButton>
+            </InputAdornment>
+            )}
           />
-          <br />
-          <UiButton text="Save" type="submit"></UiButton>
-          <div className={styles.link}>cancel</div>
+         <div className={styles.btnContainer} >
+         <UiButton text="Save" type="submit"  className={styles.button} ></UiButton>
+         </div>
+          <div className={styles.link}><Link to="/login" >cancel</Link></div>
         </Form>
       </div>
     </div>

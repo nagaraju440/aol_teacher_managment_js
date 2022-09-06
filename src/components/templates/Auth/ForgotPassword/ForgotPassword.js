@@ -1,13 +1,13 @@
 import React from 'react'
 import styles from '../Global.module.css'
-import AOLlogo from '../AOLlogo.jpg'
+import AOLlogo from '../../../assets/images/aolLogo.png'
 import { Link } from 'react-router-dom';
 import * as yup from 'yup';
 import Form from '../../../UiCore/FormComponent/FormFeild/FormFeild';
 import InputFormFeild from '../../../UiCore/FormComponent/InputFormFeild/InputFormFeild';
 import UiButton from '../../../UiCore/FormComponent/UiButton/UiButton';
 const forgotpasswordSchema=yup.object().shape({
-  "uname":yup.string().required(),
+  "username":yup.string().required(),
 })
 export default function ForgotPassword() {
   
@@ -21,9 +21,11 @@ export default function ForgotPassword() {
         <div className={styles.heading}>Forgot Password</div>
         <Form  onSubmit={onSubmit}  schema={forgotpasswordSchema} >
             <label className={styles.label}>Username</label>
-            <InputFormFeild label="username" name="uname" className={styles.input} variant={'outlined'}></InputFormFeild>
+            <InputFormFeild label="username"  type="email" name="username" className={styles.input} placeholder="Enter email address" ></InputFormFeild>
             <br/>
+            <div  className={styles.btnContainer} >
             <UiButton text="Send" type="submit" className={styles.button}></UiButton>
+            </div>
             <Link to="/login" ><div className={styles.link}>Back to log in</div></Link>
         </Form>
     </div>

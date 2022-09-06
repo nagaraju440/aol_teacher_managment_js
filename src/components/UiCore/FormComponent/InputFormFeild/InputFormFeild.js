@@ -1,9 +1,10 @@
-import { TextField } from "@mui/material";
+import { TextField,Input,InputBase,FormHelperText } from "@mui/material";
 import  { OutlinedTextFieldProps } from "@mui/material";
 import React from "react";
 import PropTypes from 'prop-types';
 import { useController } from "react-hook-form";
-
+import FormControl from '@mui/material/FormControl';
+import styles from './InputFormFeild.module.css'
  const InputFormFeild=(props)=>{
     const {
         field,
@@ -11,13 +12,16 @@ import { useController } from "react-hook-form";
       } = useController({ name: props.name, defaultValue: "" });
     return(
         <div>
-      <TextField
+      <FormControl  error={!!error?.message} >
+      <InputBase
+      // autoFocus
     {...props}
       {...field}
-      className={props.className}
-      helperText={error?.message || ""}
-      error={!!error?.message}
+      style={{borderColor:error?.message?'#d32f2f':'black'}}
     />
+      <FormHelperText id="my-helper-text">{error?.message}</FormHelperText>
+
+      </FormControl>
     </div>
     )
 }

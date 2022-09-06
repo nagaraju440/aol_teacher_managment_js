@@ -11,18 +11,20 @@ import Tabbar from "./pages/Tabbar";
 import Data_table from './components/templates/Data_table/data_table'
 function App() {
   return (
-    <AllReg/>
+    // <AllReg/>
     // <Routes>
     //   <Route path="/" element={<LoginPage />} />
     //   <Route path="/login" element={<LoginPage />} />
     //   <Route path="/forgotpassword" element={<ForgotPassword />} />
     //   <Route path="/newpassword" element={<NewPassword />} />
-    //   <Route path="/homepage" element={<Home />} />
+    //   <Route path="/home" element={<Home />} />
     // </Routes>
     // <HomePage></HomePage>
     // <Tabbar></Tabbar>
     // <div>
-    //   <Navbar/>
+    <Home />
+    // <Data_table/>
+      // <Navbar/>
 // {/* <Data_table/> */}
     // <AllReg/>
     // </div>
