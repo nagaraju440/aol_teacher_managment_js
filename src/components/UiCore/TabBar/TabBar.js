@@ -4,7 +4,8 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import './TabBar.css'
-import Home from '../../../pages/home.js';
+import Home from '../../../pages/Home';
+// import Home from '../../../pages/home.js';
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
   return (

@@ -2,12 +2,11 @@ import React from 'react';
 import Navbar from './components/UiCore/Navbar/Navbar.js';
 import { Routes, Route, Link } from "react-router-dom";
 import ForgotPassword from "./pages/forgetpassword";
-import NewPassword from "./pages/newpassword";
+import NewPassword from "./pages/NewPassword";
 import LoginPage from "./pages/login";
-import Home from "./pages/home";
-import AllReg from './components/templates/All_register/Alreg.js';
-// import HomePage from "./pages/Home"
-import Data_table from './components/templates/Data_table/data_table'
+import All_reg from './components/templates/All_register/Alreg'
+import Data_table from './components/templates/Data_table/data_table.js';
+import HomePage from "./pages/Home"
 import './App.css'
 import Dashboard from './pages/dashboard.js';
 function App() {
@@ -27,7 +26,7 @@ function App() {
     // <Data_table/>
       // <Navbar/>
 // {/* <Data_table/> */}
-    // <AllReg/>
+    // <AllRe g/>
     // </div>
     // <Routes>
       /* <Route path="/" element={<LoginPage />} />
