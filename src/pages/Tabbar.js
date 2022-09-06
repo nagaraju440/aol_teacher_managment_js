@@ -1,5 +1,5 @@
 import React from 'react';
-import  TabbarComponent from '../components/templates/Tabbar/TabbarComponent.js'
+import  TabbarComponent from '../components/UiCore/TabBar/TabBar.js'
 
 function Home(props) {
     return (

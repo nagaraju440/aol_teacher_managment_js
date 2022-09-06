@@ -3,14 +3,14 @@
     display: flex;
     justify-content: center !important;
     align-items: center !important;
-    background-color:#D3D3D3;
+    /* background-color:#D3D3D3; */
 }
 .Tabbar_boxContainer
 {
     justify-content: center !important;
     align-items: center !important;
-    width: 80% !important;
-    background-color:white;
+    width: 100% !important;
+    /* background-color:white; */
     padding:10px,10px,10px,10px;
     /* background-color:pink; */
 }

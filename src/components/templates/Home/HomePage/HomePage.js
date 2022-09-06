@@ -9,6 +9,8 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import InputAdornment from '@mui/material/InputAdornment';
 import SearchIcon from '@mui/icons-material/Search';
+// import TabBar from '../../Tabbar/TabbarComponent';
+// import T
 function a11yProps(index) {
     return {
         id: `simple-tab-${index}`,
@@ -26,6 +28,7 @@ function HomePage(props) {
     };
     return (
         <div>
+            {/* <TabBar/>       */}
             <div className='home-outer-contanier'>
                 <div className='home-inner-container1'>
                     <div className='home-inner-container2'>
@@ -40,11 +43,6 @@ function HomePage(props) {
                             </div>
                         </div>
                         <div>
-                            {/* <UiButton text={"All regions"}></UiButton>
-                            <UiButton text={"LATAM"}></UiButton>
-                            <UiButton text={"Europe"}></UiButton>
-                            <UiButton text={"Oceania"}></UiButton>
-                            <UiButton text={"Far East"}></UiButton> */}
 
                             <Box sx={{ width: '100%' }}>
                                 <Box sx={{ borderBottom: 1, borderColor: 'divider',width:'100%' }}>
