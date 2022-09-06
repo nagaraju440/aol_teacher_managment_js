@@ -11,7 +11,7 @@ function Navbar() {
         <div className="navbar-content">
           <div className="navbar-left">
             <div>
-              <MenuIcon />
+              <MenuIcon className="menu-icon" />
             </div>
             <div>
               <img src={Aol} alt="" className="navbar-aolimage" />

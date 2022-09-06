@@ -33,9 +33,14 @@
     gap:10px;
     justify-content:center;
 }
+.menu-icon{
+    cursor: pointer;
+}
 .navbar-aolimage{
     width:150px;
     height:65px;
+    margin-left: 20px;
+    cursor: pointer;
 } 
 
 .navbar-right{
