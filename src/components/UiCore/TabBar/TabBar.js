@@ -3,8 +3,8 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import './TabbarComponent.css'
-import Home from '../../../pages/Home.js';
+import './TabBar.css'
+import Home from '../../../pages/home.js';
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
   return (
@@ -31,7 +31,7 @@ function a11yProps(index) {
   };
 }
 
-export default function BasicTabs() {
+export default function TabBar() {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -41,7 +41,7 @@ export default function BasicTabs() {
 
   return (
     <div className="Tabbar_mainbox">
-    <Box sx={{ width: '90%',marginTop: '10px'}} className="Tabbar_boxContainer">
+    <Box sx={{ width: '100%',marginTop: '10px'}} className="Tabbar_boxContainer">
       <Box sx={{backgroundColor: 'white',padding: '5px' }}>
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example"  style={{display:'flex',alignItems: 'center',justifyContent: 'center',marginLeft: '10px'}}sx={{
           '& .MuiTabs-indicator':{
@@ -53,8 +53,8 @@ export default function BasicTabs() {
           <Tab label="Program Types"{...a11yProps(2)} style={{backgroundColor:value==2?"#1976D2":"white",color:value==2?"white":"black",borderRadius:5,fontSize:'0.850rem',minHeight:'18px'}} />
         </Tabs>
       </Box>
-      <div style={{backgroundColor:"#d3d3d3",paddingTop:"10px"}}>
-      <TabPanel value={value} index={0}>
+      <div style={{marginTop:"20px"}}>
+      <TabPanel  style={{backgroundColor:'white'}} value={value} index={0}>
        <Home/>
       </TabPanel>
       <TabPanel value={value} index={1}>
