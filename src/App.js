@@ -1,25 +1,26 @@
 import React from 'react';
-import Navbar from './components/UiCore/Navbar/Navbar.js';
-import { Routes, Route, Link } from "react-router-dom";
-import ForgotPassword from "./pages/forgetpassword";
-import NewPassword from "./pages/newpassword";
-import LoginPage from "./pages/login";
-import Home from "./pages/home";
-import AllReg from './components/templates/All_register/Alreg.js';
+// import Navbar from './components/UiCore/Navbar/Navbar.js';
+// import { Routes, Route, Link } from "react-router-dom";
+// import ForgotPassword from "./pages/forgetpassword";
+// import NewPassword from "./pages/newpassword";
+// import LoginPage from "./pages/login";
+// import Home from "./pages/home";
+// import AllReg from './components/templates/All_register/Alreg.js';
+import TabBar from './components/UiCore/TabBar/TabBar.js';
 // import HomePage from "./pages/Home"
-import Data_table from './components/templates/Data_table/data_table'
+// import Data_table from './components/templates/Data_table/data_table'
 import './App.css'
-import Dashboard from './pages/dashboard.js';
+// import Dashboard from './pages/dashboard.js';
 function App() {
   return (
     // <AllReg/>
-   <Routes>
-      <Route path="/" element={<LoginPage />} />
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/forgotpassword" element={<ForgotPassword />} />
-      <Route path="/newpassword" element={<NewPassword />} />
-      <Route path="/dashboard" element={<Dashboard/>} />
-    </Routes>
+  //  <Routes>
+  //     <Route path="/" element={<LoginPage />} />
+  //     <Route path="/login" element={<LoginPage />} />
+  //     <Route path="/forgotpassword" element={<ForgotPassword />} />
+  //     <Route path="/newpassword" element={<NewPassword />} />
+  //     <Route path="/dashboard" element={<Dashboard/>} />
+  //   </Routes>
     // <HomePage></HomePage>
     // <Tabbar></Tabbar>
     // <div>
@@ -35,7 +36,7 @@ function App() {
       <Route path="/forgotpassword" element={<ForgotPassword />} />
       <Route path="/newpassword" element={<NewPassword />} />
       <Route path="/homepage" element={<Home />} /> */
-
+    <TabBar></TabBar>
     // </Routes>
     // <HomePage></HomePage>
   );
