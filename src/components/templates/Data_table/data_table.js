@@ -11,7 +11,7 @@ const columns: ColDef[] =[
     field: "id",
     headerName: "Country",
     minWidth: 130,
-    disableColumnMenu: true,
+    disableColumnMenu: false,
     renderHeader: (params) => {
       const { field, api, colDef } = params;
       return (

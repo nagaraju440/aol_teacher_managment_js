@@ -7,7 +7,7 @@ import Navbar from './components/UiCore/Navbar/Navbar.js';
 // import Home from "./pages/home";
 // import AllReg from './components/templates/All_register/Alreg.js';
 import TabBar from './components/UiCore/TabBar/TabBar.js';
-// import HomePage from "./pages/Home"
+import HomePage from "./pages/Home"
 // import Data_table from './components/templates/Data_table/data_table'
 import { Routes, Route, Link } from "react-router-dom";
 import ForgotPassword from "./pages/forgetpassword";
@@ -22,6 +22,8 @@ function App() {
   return (
     <div>
       <Navbar/>
+    <HomePage></HomePage>
+
     </div>
 //     // <AllReg/>
 //   //  <Routes>
@@ -48,7 +50,6 @@ function App() {
 //       <Route path="/homepage" element={<Home />} /> */
 //     // <TabBar></TabBar>
 //     // </Routes>
-//     // <HomePage></HomePage>
   );
 }
 
