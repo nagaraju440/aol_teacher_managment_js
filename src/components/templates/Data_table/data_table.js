@@ -12,6 +12,8 @@ const columns: ColDef[] =[
     headerName: "Country",
     minWidth: 130,
     disableColumnMenu: false,
+    
+    // disableColumnSelector:true,
     renderHeader: (params) => {
       const { field, api, colDef } = params;
       return (
@@ -90,8 +92,24 @@ export default function Data_table() {
       <DataGrid
         rows={rows}
         columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[6]}
+       
+        
+        disableColumnSelector={true}
+        disableColumnFilter={true}
+        // localeText={"A-Z"}
+        // initialState={{
+        //   sorting:{
+        //     sortModel:[
+        //       {
+        //         field: 'commodity',
+        //         sort:"A-Z",
+        //         label:"A-Z"
+        //       }
+        //     ]
+        //   }
+        // }}
+        // pageSize={5}
+        // rowsPerPageOptions={[6]}
         checkboxSelection
         sx={{
           ".MuiDataGrid-columnSeparator": {

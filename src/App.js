@@ -20,17 +20,19 @@ import "./App.css";
 import Dashboard from "./pages/dashboard.js";
 function App() {
   return (
-    // <div>
-    //   <Navbar/>
-    // </div>
+    <div>
+      <Navbar/>
+      <HomePage></HomePage>
+
+    </div>
     //     // <AllReg/>
-    <Routes>
-      <Route path="/" element={<LoginPage />} />
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/forgotpassword" element={<ForgotPassword />} />
-      <Route path="/newpassword" element={<NewPassword />} />
-      <Route path="/dashboard" element={<Dashboard />} />
-    </Routes>
+    // <Routes>
+    //   <Route path="/" element={<LoginPage />} />
+    //   <Route path="/login" element={<LoginPage />} />
+    //   <Route path="/forgotpassword" element={<ForgotPassword />} />
+    //   <Route path="/newpassword" element={<NewPassword />} />
+    //   <Route path="/dashboard" element={<Dashboard />} />
+    // </Routes>
     //     // <HomePage></HomePage>
     //     // <Tabbar></Tabbar>
     //     // <div>
@@ -48,7 +50,6 @@ function App() {
     //       <Route path="/homepage" element={<Home />} /> */
     //     // <TabBar></TabBar>
     //     // </Routes>
-    //     // <HomePage></HomePage>
   );
 }
 
