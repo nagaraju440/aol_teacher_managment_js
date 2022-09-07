@@ -90,8 +90,8 @@ export default function Data_table() {
       <DataGrid
         rows={rows}
         columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[6]}
+        // pageSize={5}
+        // rowsPerPageOptions={[6]}
         checkboxSelection
         sx={{
           ".MuiDataGrid-columnSeparator": {

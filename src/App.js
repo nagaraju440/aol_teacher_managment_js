@@ -12,18 +12,18 @@ import Dashboard from './pages/dashboard.js';
 function App() {
   return (
     // <AllReg/>
-   <Routes>
-      <Route path="/" element={<LoginPage />} />
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/forgotpassword" element={<ForgotPassword />} />
-      <Route path="/newpassword" element={<NewPassword />} />
-      <Route path="/dashboard" element={<Dashboard/>} />
-    </Routes>
+  //  <Routes>
+  //     <Route path="/" element={<LoginPage />} />
+  //     <Route path="/login" element={<LoginPage />} />
+  //     <Route path="/forgotpassword" element={<ForgotPassword />} />
+  //     <Route path="/newpassword" element={<NewPassword />} />
+  //     <Route path="/dashboard" element={<Dashboard/>} />
+  //   </Routes>
     // <HomePage></HomePage>
     // <Tabbar></Tabbar>
     // <div>
     // <Home />
-    // <Data_table/>
+    <Data_table/>
       // <Navbar/>
 // {/* <Data_table/> */}
     // <AllRe g/>
