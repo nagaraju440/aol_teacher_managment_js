@@ -94,7 +94,7 @@ export default function Data_table() {
       style={{
         height: 400,
         width: "100%",
-        overflowY: "scroll",
+        // overflowY: "scroll",
       }}
     >
       <DataGrid
