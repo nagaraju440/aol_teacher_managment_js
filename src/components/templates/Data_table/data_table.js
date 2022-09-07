@@ -92,7 +92,7 @@ export default function Data_table() {
   return (
     <div
       style={{
-        height: 400,
+        height: "400px",
         width: "100%",
         // overflowY: "scroll",
       }}
@@ -100,9 +100,8 @@ export default function Data_table() {
       <DataGrid
         rows={rows}
         columns={columns}
-        pageSize={5}
-        // scrollbarSize={1}
-        rowsPerPageOptions={[6]}
+        // pageSize={5}
+        // rowsPerPageOptions={[10]}
         checkboxSelection
         sx={{
           ".MuiDataGrid-columnSeparator": {
