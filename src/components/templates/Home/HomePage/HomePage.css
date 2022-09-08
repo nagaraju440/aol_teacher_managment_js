@@ -46,6 +46,15 @@
 .select-dropdown{
     width: 100%;
 }
+.export-button{
+    height: 34px;
+    text-transform: none;
+    font-family: Poppins;
+    font-size: 14px;
+    background-color: #d41217;
+    color: white;
+    min-width: 48px;
+}
 .hr-line{
     margin-bottom: 30px;
 }

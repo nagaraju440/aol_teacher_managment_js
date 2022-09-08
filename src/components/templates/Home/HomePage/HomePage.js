@@ -12,6 +12,8 @@ import InputAdornment from "@mui/material/InputAdornment";
 import SearchIcon from "@mui/icons-material/Search";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
+import { Link } from "react-router-dom";
+import ExportPage from "../../ExportPage/ExportPage.js";
 import Data_table from "../../Data_table/data_table";
 import AllReg from "../../All_register/Alreg";
 
@@ -74,8 +76,9 @@ function HomePage(props) {
                 />
               </div>
               <div className="home-export-add-container">
-                <UiButton text={"Export"}></UiButton>
-
+                <Link to="/exportpage">
+                  <div className="export-button">Export</div>
+                </Link>
                 <div>
                   <UiButton text={"Add Teacher"}></UiButton>
                 </div>
@@ -83,7 +86,7 @@ function HomePage(props) {
             </div>
           </div>
           <hr className="hr-line"></hr>
-          <Data_table />
+          <Data_table height={400} />
 
           <div></div>
         </div>

@@ -87,12 +87,13 @@ const rows = data.data.map((row) => {
     totalteachers: row.totalteachers,
   };
 });
-export default function Data_table() {
+export default function Data_table(props) {
   const [selection, setselection] = useState([]);
   return (
     <div
       style={{
-        height: "400px",
+        // height: "400px",
+        height: props.height,
         width: "100%",
         // overflowY: "scroll",
       }}
