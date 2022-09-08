@@ -12,10 +12,9 @@ import InputAdornment from "@mui/material/InputAdornment";
 import SearchIcon from "@mui/icons-material/Search";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
-import { Link } from "react-router-dom";
-import ExportPage from "../../ExportPage/ExportPage.js";
+import { Link, useNavigate } from "react-router-dom";
+import AllReg from "../All_register/Alreg";
 import Data_table from "../../Data_table/data_table";
-import AllReg from "../../All_register/Alreg";
 
 function a11yProps(index) {
   return {
@@ -28,7 +27,7 @@ const regions = ["All Regions", "Latam", "Europe", "Oceania", "Far East"];
 function HomePage(props) {
   const [value, setValue] = React.useState(0);
   const [selectedRegion, setSelectedRegion] = React.useState(0);
-
+  const navigate=useNavigate();
   const handleChangeSelect = (event) => {
     setSelectedRegion(event.target.value);
   };
@@ -76,9 +75,7 @@ function HomePage(props) {
                 />
               </div>
               <div className="home-export-add-container">
-                <Link to="/exportpage">
-                  <div className="export-button">Export</div>
-                </Link>
+                <UiButton text="Export" onClick={()=>{navigate('/home/export')}} ></UiButton>
                 <div>
                   <UiButton text={"Add Teacher"}></UiButton>
                 </div>
@@ -87,7 +84,6 @@ function HomePage(props) {
           </div>
           <hr className="hr-line"></hr>
           <Data_table height={400} />
-
           <div></div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
-import UiButton from "../../UiCore/FormComponent/UiButton/UiButton";
-import "./ExportPage.css";
+import UiButton from "../../../UiCore/FormComponent/UiButton/UiButton";
+import "./Export.css";
 import Box from "@mui/material/Box";
 import PropTypes from "prop-types";
 import TextField from "@mui/material/TextField";
@@ -18,12 +18,9 @@ import { Link } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
-import Navbar from "../../UiCore/Navbar/Navbar.js";
-import Data_table from "../Data_table/data_table";
-import UserData from "../Data_table/data.json";
-import Dashboard from "../../../pages/dashboard.js";
-
-// import { useDownloadExcel } from "react-export-table-to-excel";
+import Navbar from "../../../UiCore/Navbar/Navbar.js";
+import UserData from "../../Data_table/data.json";
+import Data_table from "../../Data_table/data_table";
 console.log("Userdata iss", UserData.data);
 function a11yProps(index) {
   return {
@@ -33,7 +30,7 @@ function a11yProps(index) {
 }
 
 const regions = ["All Regions", "Latam", "Europe", "Oceania", "Far East"];
-function ExportPage(props) {
+function Export(props) {
   const [value, setValue] = React.useState(0);
   const [selectedRegion, setSelectedRegion] = React.useState(0);
 
@@ -69,7 +66,7 @@ function ExportPage(props) {
             <div className="export-heading-container">
               <div className="export-heading">Region: All Regions</div>
               <div className="export-close">
-                <Link to="/dashboard">
+                <Link to="/home">
                   <IconButton>
                     <CloseIcon fontSize="large" />
                   </IconButton>
@@ -113,4 +110,4 @@ function ExportPage(props) {
   );
 }
 
-export default ExportPage;
+export default Export;

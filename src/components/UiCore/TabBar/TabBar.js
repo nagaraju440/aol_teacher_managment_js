@@ -84,9 +84,8 @@ export default function TabBar() {
             ></Tab>
           </Tabs>
         </Box>
-        <div className="TabBar_TabPanelSection">
+        {/* <div className="TabBar_TabPanelSection">
           <TabPanel value={value} index={0}>
-            {/* <Home/> */}
             <HomePage />
           </TabPanel>
           <TabPanel value={value} index={1}>
@@ -95,7 +94,7 @@ export default function TabBar() {
           <TabPanel value={value} index={2}>
             Item Three
           </TabPanel>
-        </div>
+        </div> */}
       </Box>
     </div>
   );
