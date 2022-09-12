@@ -1,0 +1,15 @@
+.s1-outer-container{
+    width: 100%;
+    /* background-color: lightgray; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.s1-inner-container1{
+    width: 90%;
+}
+.s1-tabbar{
+    background-color: white;
+
+}
