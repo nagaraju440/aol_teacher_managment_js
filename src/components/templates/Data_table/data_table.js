@@ -1,17 +1,24 @@
 import React from "react";
 import { useState } from "react";
-import { DataGrid , ColDef, ValueGetterParams, GridColumnHeaderTitle, GridColumnHeaderSortIcon } from "@mui/x-data-grid";
+import {
+  DataGrid,
+  ColDef,
+  ValueGetterParams,
+  GridColumnHeaderTitle,
+  GridColumnHeaderSortIcon,
+} from "@mui/x-data-grid";
 import data from "./data.json";
-import IconButton from '@mui/material/IconButton';
-import ClearIcon from '@mui/icons-material/Clear';
-import FilterListIcon from '@mui/icons-material/FilterList';
+import IconButton from "@mui/material/IconButton";
+import ClearIcon from "@mui/icons-material/Clear";
+import FilterListIcon from "@mui/icons-material/FilterList";
+
 console.log(data);
-const columns: ColDef[] =[
+const columns: ColDef[] = [
   {
     field: "id",
     headerName: "Country",
     minWidth: 130,
-    disableColumnMenu: true,
+    disableColumnMenu: false,
     renderHeader: (params) => {
       const { field, api, colDef } = params;
       return (
@@ -22,20 +29,17 @@ const columns: ColDef[] =[
             columnWidth={colDef.width}
           />
           {
-            (
-              <div className="MuiDataGrid-iconButtonContainer1">
+            <div className="MuiDataGrid-iconButtonContainer1">
               <IconButton>
-              <FilterListIcon className="MuiDataGrid-sortIcon" />
+                <FilterListIcon className="MuiDataGrid-sortIcon" />
               </IconButton>
-              </div>
-            )
-
+            </div>
           }
         </>
       );
     },
     // ColumnFilter:
-    disableColumnFilter:true
+    disableColumnFilter: true,
   },
   {
     field: "active",
@@ -84,9 +88,15 @@ const rows = data.data.map((row) => {
   };
 });
 export default function Data_table() {
-  const [selection, setselection] = useState([])
+  const [selection, setselection] = useState([]);
   return (
-    <div style={{ height: 400, width: "100%" }}>
+    <div
+      style={{
+        height: 400,
+        width: "100%",
+        // overflowY: "scroll",
+      }}
+    >
       <DataGrid
         rows={rows}
         columns={columns}
@@ -106,34 +116,32 @@ export default function Data_table() {
           },
           ".MuiDataGrid-sortIcon": {
             opacity: "inherit !important",
-            color:'black'
+            color: "black",
           },
           "& .MuiDataGrid-iconButtonContainer": {
             visibility: "visible !important",
           },
-          "& .css-1jbbcbn-MuiDataGrid-columnHeaderTitle":{
-            fontWeight:700,
-            fontSize:'14px'
+          "& .css-1jbbcbn-MuiDataGrid-columnHeaderTitle": {
+            fontWeight: 700,
+            fontSize: "14px",
           },
-          "& .css-1pe4mpk-MuiButtonBase-root-MuiIconButton-root":{
-            color:'black'
+          "& .css-1pe4mpk-MuiButtonBase-root-MuiIconButton-root": {
+            color: "black",
           },
-          '& .MuiDataGrid-iconButtonContainer': {
-            display:'none'
+          "& .MuiDataGrid-iconButtonContainer": {
+            display: "none",
           },
-          '& .MuiDataGrid-iconButtonContainer1':{
-            paddingLeft:'5px',
-            color:'black',
-          }
-
+          "& .MuiDataGrid-iconButtonContainer1": {
+            paddingLeft: "5px",
+            color: "black",
+          },
         }}
-        hideFooter='true'
+        hideFooter="true"
         onSelectionModelChange={(newSelection) => {
-            console.log(newSelection, "hsdmhdkjwa");
-            setselection(newSelection,console.log(selection));
+          console.log(newSelection, "hsdmhdkjwa");
+          setselection(newSelection);
         }}
       />
     </div>
   );
 }
-

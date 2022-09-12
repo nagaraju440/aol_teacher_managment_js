@@ -5,6 +5,8 @@
     border-radius: 5px;
     display: flex;
     justify-content: center;
+    padding: 30px;
+
 }
 .home-inner-container2{
     width: 100%;
@@ -46,4 +48,7 @@
 }
 .hr-line{
     margin-bottom: 30px;
+}
+.summary-container{
+    margin-top: 30px;
 }
