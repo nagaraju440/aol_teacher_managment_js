@@ -37,7 +37,7 @@ function Navbar() {
               <img src={Aol} alt="" className="navbar-aolimage" />
             </div>
           </div>
-          <div className="navbar-right">
+          {/* <div className="navbar-right">
             <div>
               <IconButton
                 onClick={handleClick}
@@ -94,7 +94,7 @@ function Navbar() {
               </Menu>
             </div>
             <div className="navbar-right-content">Admin</div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

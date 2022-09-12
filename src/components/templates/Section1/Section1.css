@@ -1,16 +1,95 @@
-.s1-outer-container{
+.s1-outer-container {
     width: 100%;
-    /* background-color: lightgray; */
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-.s1-inner-container1{
+.s1-inner-container1 {
     width: 90%;
 }
-.s1-tabbar{
-    background-color: white;
-    height: 250px;
 
+.s1-tabbar {
+    background-color: white;
+    height: 60px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.s1-home {
+    font-size: 20px;
+    width: 90%;
+    font-weight: 500;
+}
+
+.s1-tm {
+    margin-top: 30px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+
+}
+
+.s1-tm-inner-container {
+    width: 90%;
+    margin-top: 40px;
+    height: 75vh;
+}
+
+.s1-search-teacher {
+
+    border: solid 1px grey;
+    border-radius: 10px;
+    margin-top: 40px;
+    height: 60vh;
+
+}
+
+.s1-search-teacher-inner-container {
+    margin-top: 40px;
+    display: flex;
+}
+
+.s1-input-feild {
+    font-size: 25x;
+    height: 40px;
+    width: 400px;
+}
+
+.s1-st-text {
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.s1-st-input {
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+    justify-content: space-between;
+}
+
+.s1-search-button{
+    all: unset;
+    height: 35px;
+    width: 100px;
+    background-color: blue;
+    border-radius: 5px;
+    text-align: center;
+    color: white;
+}
+
+.s1-cancel-text{
+    color: #1976D2;
+    text-decoration: underline;
+    font-size: 18px;
+    margin-left: 20px;
 }

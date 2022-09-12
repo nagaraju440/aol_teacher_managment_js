@@ -14,7 +14,7 @@ function App() {
       
     // </Routes>
     <div>
-      <Navbar/>
+      {/* <Navbar/> */}
       <Section1/>
       {/* <p>hiiii</p> */}
     </div>
