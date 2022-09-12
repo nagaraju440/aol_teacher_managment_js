@@ -1,0 +1,12 @@
+
+.pageTemplate_container{
+    width: 100%;
+}
+.pageTemplate_body_and_tabbar{
+    width: 98%;
+    margin: 0px auto;
+}
+.pageTemplate_body{
+    width: 98%;
+    margin: 0px auto;
+}

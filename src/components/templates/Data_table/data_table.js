@@ -89,12 +89,13 @@ const rows = data.data.map((row) => {
     totalteachers: row.totalteachers,
   };
 });
-export default function Data_table() {
+export default function Data_table(props) {
   const [selection, setselection] = useState([]);
   return (
     <div
       style={{
-        height: 400,
+        // height: "400px",
+        height: props.height,
         width: "100%",
         // overflowY: "scroll",
       }}
@@ -102,6 +103,7 @@ export default function Data_table() {
       <DataGrid
         rows={rows}
         columns={columns}
+<<<<<<< HEAD
 
 
         disableColumnSelector={true}
@@ -132,6 +134,10 @@ export default function Data_table() {
         // }}
         // pageSize={5}
         // rowsPerPageOptions={[6]}
+=======
+        // pageSize={5}
+        // rowsPerPageOptions={[10]}
+>>>>>>> 52a5fc877ee79beda21d160e1d3123432d9f461d
         checkboxSelection
         sx={{
           ".MuiDataGrid-columnSeparator": {

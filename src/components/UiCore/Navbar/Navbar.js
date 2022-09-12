@@ -14,6 +14,7 @@ import Tooltip from "@mui/material/Tooltip";
 import PersonAdd from "@mui/icons-material/PersonAdd";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
+import { Link } from "react-router-dom";
 function Navbar() {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -87,7 +88,9 @@ function Navbar() {
                 transformOrigin={{ horizontal: "right", vertical: "top" }}
                 anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
               >
-                <MenuItem>Change Password</MenuItem>
+                <Link to="/changepassword">
+                  <MenuItem>Change Password</MenuItem>
+                </Link>
               </Menu>
             </div>
             <div className="navbar-right-content">Admin</div>
