@@ -1,8 +1,11 @@
 
 import Login from '../components/templates/Auth/Login/Login'
+import PageTemplate from '../components/UiCore/pageTemplate/PageTemplate';
 const LoginPage=()=>{
     return(
-        <Login></Login>
+        <PageTemplate>
+             <Login></Login>
+        </PageTemplate>
     )
 }
 export default LoginPage;

@@ -13,34 +13,43 @@ import ClearIcon from "@mui/icons-material/Clear";
 import FilterListIcon from "@mui/icons-material/FilterList";
 
 console.log(data);
-const columns: ColDef[] = [
+const columns = [
   {
     field: "id",
     headerName: "Country",
     minWidth: 130,
-    disableColumnMenu: false,
-    renderHeader: (params) => {
-      const { field, api, colDef } = params;
-      return (
-        <>
-          <GridColumnHeaderTitle
-            label={colDef.headerName || colDef.field}
-            description={colDef.description}
-            columnWidth={colDef.width}
-          />
-          {
-            <div className="MuiDataGrid-iconButtonContainer1">
-              <IconButton>
-                <FilterListIcon className="MuiDataGrid-sortIcon" />
-              </IconButton>
-            </div>
-          }
-        </>
-      );
-    },
-    // ColumnFilter:
-    disableColumnFilter: true,
+    headerAlign: "center",
+    align: "center",
+    sortable: false,
+    // disableColumnMenu: true,
   },
+  // {
+  //   field: "id",
+  //   headerName: "Country",
+  //   minWidth: 130,
+  //   disableColumnMenu: false,
+  //   renderHeader: (params) => {
+  //     const { field, api, colDef } = params;
+  //     return (
+  //       <>
+  //         <GridColumnHeaderTitle
+  //           label={colDef.headerName || colDef.field}
+  //           description={colDef.description}
+  //           columnWidth={colDef.width}
+  //         />
+  //         {
+  //           <div className="MuiDataGrid-iconButtonContainer1">
+  //             <IconButton>
+  //               <FilterListIcon className="MuiDataGrid-sortIcon" />
+  //             </IconButton>
+  //           </div>
+  //         }
+  //       </>
+  //     );
+  //   },
+  //   // ColumnFilter:
+  //   disableColumnFilter: true,
+  // },
   {
     field: "active",
     headerName: "Active",
@@ -87,12 +96,13 @@ const rows = data.data.map((row) => {
     totalteachers: row.totalteachers,
   };
 });
-export default function Data_table() {
+export default function Data_table(props) {
   const [selection, setselection] = useState([]);
   return (
     <div
       style={{
-        height: 400,
+        // height: "400px",
+        height: props.height,
         width: "100%",
         // overflowY: "scroll",
       }}
@@ -101,7 +111,7 @@ export default function Data_table() {
         rows={rows}
         columns={columns}
         // pageSize={5}
-        // rowsPerPageOptions={[6]}
+        // rowsPerPageOptions={[10]}
         checkboxSelection
         sx={{
           ".MuiDataGrid-columnSeparator": {

@@ -1,8 +1,11 @@
 import React from 'react'
 import NewPassword from '../components/templates/Auth/NewPassword/NewPassword'
+import PageTemplate from '../components/UiCore/pageTemplate/PageTemplate'
 
 export default function NewPasswordPage() {
   return (
-    <NewPassword></NewPassword>
+   <PageTemplate>
+     <NewPassword></NewPassword>
+   </PageTemplate>
   )
 }
