@@ -27,7 +27,7 @@ const regions = ["All Regions", "Latam", "Europe", "Oceania", "Far East"];
 function HomePage(props) {
   const [value, setValue] = React.useState(0);
   const [selectedRegion, setSelectedRegion] = React.useState(0);
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   const handleChangeSelect = (event) => {
     setSelectedRegion(event.target.value);
   };
@@ -43,72 +43,17 @@ function HomePage(props) {
             <div className="home-icon">
               <div className="home-icon-left-container">
                 <div>
-                  <h3>Home</h3>
-                </div>
-                <div className="slect-dropdown-container">
-                  <Select
-                    sx={{ height: 43 }}
-                    className="select-dropdown"
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={selectedRegion}
-                    // label="Age"
-                    onChange={handleChangeSelect}
-                    defaultValue={10}
-                  >
-                    {regions.map((region, index) => (
-                      <MenuItem value={index}>{region}</MenuItem>
-                    ))}
-                  </Select>
-                </div>
-                <InputBase
-                  id="outlined-search"
-                  label="Search by country"
-                  placeholder="Search by country"
-                  type="search"
-                  className="home-search"
-                  startAdornment={
-                    <InputAdornment position="start">
-                      <SearchIcon />
-                    </InputAdornment>
-                  }
-                />
-              </div>
-              <div className="home-export-add-container">
-                <UiButton text="Export" onClick={()=>{navigate('/home/export')}} ></UiButton>
-                <div>
-                  <UiButton text={"Add Teacher"}></UiButton>
+                  <h3>Teacher Management</h3>
                 </div>
               </div>
             </div>
           </div>
-          <hr className="hr-line"></hr>
           <Data_table height={400} />
           <div></div>
         </div>
-      </div>
-      <div className="summary-container">
-        <AllReg />
       </div>
     </div>
   );
 }
 
 export default HomePage;
-
-{
-  /* <Box sx={{ width: '100%' }}>
-                                <Box sx={{ borderBottom: 1, borderColor: 'divider',width:'100%' }}>
-                                    <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" className='home-tab' style={{display:"flex",width:"60%",justifyContent:"space-between"}}>
-                    
-                                        <Tab label="All Regions" {...a11yProps(0)} style={{backgroundColor:value==0?"#1976D2":"#D3D3D3",color:value==0?"white":"black"}} />
-                                        <Tab label="LATAM" {...a11yProps(1)} style={{backgroundColor:value==1?"#1976D2":"#D3D3D3",color:value==1?"white":"black"}}/>
-                                        <Tab label="Europe" {...a11yProps(2)} style={{backgroundColor:value==2?"#1976D2":"#D3D3D3",color:value==2?"white":"black"}}/>
-                                        <Tab label="Oceania" {...a11yProps(3)} style={{backgroundColor:value==3?"#1976D2":"#D3D3D3",color:value==3?"white":"black"}}/>
-                                        <Tab label="Far East" {...a11yProps(4)} style={{backgroundColor:value==4?"#1976D2":"#D3D3D3",color:value==4?"white":"black"}}/>
-                              
-                                    </Tabs>
-                                </Box>
-
-                            </Box> */
-}

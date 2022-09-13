@@ -59,42 +59,14 @@ export default function TabBar() {
               label="Home"
               {...a11yProps(0)}
               style={{
-                backgroundColor: value == 0 ? "#1976D2" : "white",
-                color: value == 0 ? "white" : "black",
-              }}
-              className="TabBar_Tab"
-            ></Tab>
-            <Tab
-              label="Teachers"
-              {...a11yProps(1)}
-              style={{
-                backgroundColor: value == 1 ? "#1976D2" : "white",
-                color: value == 1 ? "white" : "black",
-              }}
-              className="TabBar_Tab"
-            ></Tab>
-            <Tab
-              label="Program Types"
-              {...a11yProps(2)}
-              style={{
-                backgroundColor: value == 2 ? "#1976D2" : "white",
-                color: value == 2 ? "white" : "black",
+                // backgroundColor: value == 0 ? "#1976D2" : "white",
+                // color: value == 0 ? "white" : "black",
+                color: "black",
               }}
               className="TabBar_Tab"
             ></Tab>
           </Tabs>
         </Box>
-        {/* <div className="TabBar_TabPanelSection">
-          <TabPanel value={value} index={0}>
-            <HomePage />
-          </TabPanel>
-          <TabPanel value={value} index={1}>
-            Item Two
-          </TabPanel>
-          <TabPanel value={value} index={2}>
-            Item Three
-          </TabPanel>
-        </div> */}
       </Box>
     </div>
   );

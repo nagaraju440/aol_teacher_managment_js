@@ -15,9 +15,9 @@ import FilterListIcon from "@mui/icons-material/FilterList";
 console.log(data);
 const columns: ColDef[] = [
   {
-    field: "id",
-    headerName: "Country",
-    minWidth: 130,
+    field: "name",
+    headerName: "Name",
+    minWidth: 200,
     disableColumnMenu: false,
     renderHeader: (params) => {
       const { field, api, colDef } = params;
@@ -29,11 +29,11 @@ const columns: ColDef[] = [
             columnWidth={colDef.width}
           />
           {
-            <div className="MuiDataGrid-iconButtonContainer1">
-              <IconButton>
-                <FilterListIcon className="MuiDataGrid-sortIcon" />
-              </IconButton>
-            </div>
+            // <div className="MuiDataGrid-iconButtonContainer1">
+            //   <IconButton>
+            //     <FilterListIcon className="MuiDataGrid-sortIcon" />
+            //   </IconButton>
+            // </div>
           }
         </>
       );
@@ -42,36 +42,45 @@ const columns: ColDef[] = [
     disableColumnFilter: true,
   },
   {
-    field: "active",
-    headerName: "Active",
-    minWidth: 170,
-    headerAlign: "center",
-    align: "center",
-    sortable: false,
-    disableColumnMenu: true,
-  },
-  {
-    field: "inactive",
-    headerName: "Inactive",
-    minWidth: 170,
-    headerAlign: "center",
-    align: "center",
-    sortable: false,
-    disableColumnMenu: true,
-  },
-  {
-    field: "viewonly",
-    headerName: "View Only",
-    minWidth: 170,
-    headerAlign: "center",
-    align: "center",
-    sortable: false,
-    disableColumnMenu: true,
-  },
-  {
-    field: "totalteachers",
-    headerName: "Total Teachers",
+    field: "id",
+    headerName: "Email Id",
     minWidth: 250,
+    headerAlign: "center",
+    align: "center",
+    sortable: false,
+    disableColumnMenu: true,
+  },
+  {
+    field: "phone",
+    headerName: "Phone",
+    minWidth: 250,
+    headerAlign: "center",
+    align: "center",
+    sortable: false,
+    disableColumnMenu: true,
+  },
+  {
+    field: "country",
+    headerName: "Country",
+    minWidth: 200,
+    headerAlign: "center",
+    align: "center",
+    sortable: false,
+    disableColumnMenu: true,
+  },
+  {
+    field: "teachingStatus",
+    headerName: "Teacher Status",
+    minWidth: 200,
+    headerAlign: "center",
+    align: "center",
+    sortable: false,
+    disableColumnMenu: true,
+  },
+  {
+    field: "action",
+    headerName: "Action",
+    minWidth: 200,
     headerAlign: "center",
     align: "center",
     sortable: false,
@@ -80,11 +89,12 @@ const columns: ColDef[] = [
 ];
 const rows = data.data.map((row) => {
   return {
+    name: row.name,
     id: row.id,
-    active: row.active,
-    inactive: row.inactive,
-    viewonly: row.viewonly,
-    totalteachers: row.totalteachers,
+    phone: row.phone,
+    country: row.country,
+    teachingStatus: row.teachingStatus,
+    action: row.action,
   };
 });
 export default function Data_table(props) {
@@ -94,7 +104,10 @@ export default function Data_table(props) {
       style={{
         // height: "400px",
         height: props.height,
-        width: "100%",
+        width: "80%",
+        // display: "flex",
+        // justifyContent: "centre",
+        alignItems: "centre",
         // overflowY: "scroll",
       }}
     >
@@ -103,7 +116,7 @@ export default function Data_table(props) {
         columns={columns}
         // pageSize={5}
         // rowsPerPageOptions={[10]}
-        checkboxSelection
+        // checkboxSelection
         sx={{
           ".MuiDataGrid-columnSeparator": {
             display: "none",
@@ -138,10 +151,10 @@ export default function Data_table(props) {
           },
         }}
         hideFooter="true"
-        onSelectionModelChange={(newSelection) => {
-          console.log(newSelection, "hsdmhdkjwa");
-          setselection(newSelection);
-        }}
+        // onSelectionModelChange={(newSelection) => {
+        //   console.log(newSelection, "hsdmhdkjwa");
+        //   setselection(newSelection);
+        // }}
       />
     </div>
   );

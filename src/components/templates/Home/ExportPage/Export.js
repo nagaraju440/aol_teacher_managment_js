@@ -65,16 +65,16 @@ function Export(props) {
           <div>
             <div className="export-heading-container">
               <div className="export-heading">Region: All Regions</div>
-              <div className="export-close">
+              {/* <div className="export-close">
                 <Link to="/home">
                   <IconButton>
                     <CloseIcon fontSize="large" />
                   </IconButton>
                 </Link>
-              </div>
+              </div> */}
             </div>
 
-            <div className="export-subheading-container">
+            {/* <div className="export-subheading-container">
               <div className="export-icon-left-container">
                 <InputBase
                   id="outlined-search"
@@ -98,7 +98,7 @@ function Export(props) {
                   Export All Rows
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
           <hr className="hr-line"></hr>
           <Data_table height={530} />

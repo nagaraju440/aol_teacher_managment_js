@@ -1,77 +1,40 @@
 {
     "data":[
-        { "id": "United States",
-         "active": 1699,
-         "inactive":2,
-         "viewonly": 40,
-         "totalteachers":23
+         
+        {
+          "name":"James Warner",
+          "id":"JamesW1@yopmail.com",
+          "phone":"+1- 232-23432",
+          "country":"Canada",
+          "teachingStatus":"Active",
+          "action":"1"
         },
-         { "id": "United Kingdom",
-         "active": 1300,
-         "inactive": 145,
-         "viewonly": 30,
-         "totalteachers":32
+        {
+          "name":"James Warner",
+          "id":"JamesW2@yopmail.com",
+          "phone":"+1- 232-23432",
+          "country":"Canada",
+          "teachingStatus":"Active",
+          "action":"1"
         },
-         { "id": "Brazil",
-          "active": 1230, 
-          "inactive": 123,
-          "viewonly": 100,
-          "totalteachers":56
+        {
+          "name":"James Warner",
+          "id":"JamesW3@yopmail.com",
+          "phone":"+1- 232-23432",
+          "country":"Canada",
+          "teachingStatus":"Active",
+          "action":"1"
         },
-        
-         { "id": "Australia",
-         "active":870, 
-         "inactive": 23, 
-         "viewonly":73,
-         "totalteachers":56
-        },
-         { "id": "Austria", 
-         "active":200, 
-         "inactive": 23,
-         "viewonly":73,
-         "totalteachers":56
-        },
-        { "id": "Uruguay",
-         "active": 1230,
-         "inactive":123,
-         "viewonly": 100,
-         "totalteachers":1453
-        },
-         { "id": "Chile",
-         "active": 870,
-         "inactive": 23,
-         "viewonly": 73,
-         "totalteachers":966
-        },
-         { "id": "Panama",
-          "active": 930, 
-          "inactive": 87,
-          "viewonly": 93,
-          "totalteachers":1110
-        },
-         { "id": "Argentina",
-         "active":930, 
-         "inactive": 87,
-         "viewonly": 93,
-         "totalteachers":98
-        },
-         { "id": "Canada",
-         "active":200, 
-         "inactive": 23, 
-         "viewonly":73,
-         "totalteachers":296
-        },
-         { "id": "Armenia", 
-         "active":200, 
-         "inactive": 23,
-         "viewonly":73,
-         "totalteachers":296
-        } ,
-         { "id": "Colombia", 
-         "active":1699, 
-         "inactive": 130,
-         "viewonly":40,
-         "totalteachers":1869
+        {
+          "name":"James Warner",
+          "id":"JamesW4@yopmail.com",
+          "phone":"+1- 232-23432",
+          "country":"Canada",
+          "teachingStatus":"Active",
+          "action":"1"
         }
+        
+        
+        
     ]
 }
