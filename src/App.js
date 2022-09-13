@@ -4,24 +4,19 @@ import "./App.css";
 import Section1 from "./components/templates/Section1/Section1";
 import Section2 from "./components/templates/Section2/Section2";
 import Section3 from "./components/templates/Section3/Section3";
-import Navbar from "./components/UiCore/Navbar/Navbar";
-
-import Data_table from "./components/templates/Data_Table/data_table";
-// import All_reg from "./components/templates/All_register/Alreg.js";
 
 function App() {
   return (
     // <Routes>
-    //   <Route path="/" element={<LoginPage />} />
-
+    //   <Route path="/" element={<Section1 />} />
+    //   <Route path="/search-page" element={<Section1 />} />
+    //   <Route path="/teachers-list" element={<Section2 />} />
+    //   <Route path="/teacher-information" element={<Section3/>}/>
     // </Routes>
     <div>
-      {/* <Navbar/> */}
-      {/* <Section1 /> */}
-      {/* <Data_table height="400px" /> */}
+      <Section1 />
       <Section2 />
-      {/* <Section3 /> */}
-      {/* <p>hiiii</p> */}
+      <Section3 />
     </div>
   );
 }
