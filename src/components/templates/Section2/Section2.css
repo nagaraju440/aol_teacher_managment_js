@@ -1,0 +1,48 @@
+.s2-outer-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.s2-inner-container1 {
+    width: 90%;
+}
+
+.s2-tabbar {
+    background-color: white;
+    height: 60px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.s2-home {
+    font-size: 20px;
+    width: 90%;
+    font-weight: 500;
+}
+
+.s2-tm {
+    margin-top: 30px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+
+}
+
+.s2-tm-inner-container {
+    width: 90%;
+    margin-top: 40px;
+    height: 75vh;
+}
+.s2-tm-table-container{
+    padding-top: 30px;
+    padding-left: 90px;
+    /* background-color: aqua; */
+}
