@@ -2,14 +2,8 @@ import React from "react";
 import { useState } from "react";
 import {
   DataGrid,
-  ColDef,
-  ValueGetterParams,
-  GridColumnHeaderTitle,
-  GridColumnHeaderSortIcon,
 } from "@mui/x-data-grid";
 import data from "./data.json";
-import IconButton from "@mui/material/IconButton";
-import ClearIcon from "@mui/icons-material/Clear";
 import FilterListIcon from "@mui/icons-material/FilterList";
 
 console.log(data);
@@ -20,36 +14,7 @@ const columns = [
     minWidth: 130,
     headerAlign: "center",
     align: "center",
-    sortable: false,
-    // disableColumnMenu: true,
   },
-  // {
-  //   field: "id",
-  //   headerName: "Country",
-  //   minWidth: 130,
-  //   disableColumnMenu: false,
-  //   renderHeader: (params) => {
-  //     const { field, api, colDef } = params;
-  //     return (
-  //       <>
-  //         <GridColumnHeaderTitle
-  //           label={colDef.headerName || colDef.field}
-  //           description={colDef.description}
-  //           columnWidth={colDef.width}
-  //         />
-  //         {
-  //           <div className="MuiDataGrid-iconButtonContainer1">
-  //             <IconButton>
-  //               <FilterListIcon className="MuiDataGrid-sortIcon" />
-  //             </IconButton>
-  //           </div>
-  //         }
-  //       </>
-  //     );
-  //   },
-  //   // ColumnFilter:
-  //   disableColumnFilter: true,
-  // },
   {
     field: "active",
     headerName: "Active",
@@ -101,17 +66,21 @@ export default function Data_table(props) {
   return (
     <div
       style={{
-        // height: "400px",
         height: props.height,
         width: "100%",
-        // overflowY: "scroll",
       }}
     >
       <DataGrid
+       {...data}
+       components={{
+        ColumnMenuIcon: FilterListIcon,
+        // ColumnMenu: 
+       }}
         rows={rows}
         columns={columns}
-        // pageSize={5}
-        // rowsPerPageOptions={[10]}
+        disableColumnSelector={true}
+        disableColumnFilter={true}
+        
         checkboxSelection
         sx={{
           ".MuiDataGrid-columnSeparator": {
@@ -141,10 +110,16 @@ export default function Data_table(props) {
           "& .MuiDataGrid-iconButtonContainer": {
             display: "none",
           },
+          // ".MuiDataGrid-gridMenuList": {
+          //   backgroundColor: "pink",},
           "& .MuiDataGrid-iconButtonContainer1": {
             paddingLeft: "5px",
             color: "black",
           },
+          // "&.MuiButtonBase-root-MuiMenuItem-root":{
+          //   backgroundColor:'red',
+          //   // content:"This text replaces the original."
+          // }
         }}
         hideFooter="true"
         onSelectionModelChange={(newSelection) => {
