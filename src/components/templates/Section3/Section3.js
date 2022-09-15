@@ -1,12 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import image from "../../assets/images/profile.jpeg"
 import Navbar from '../../UiCore/Navbar/Navbar';
 import "./Section3.css"
 import UiButton from '../../UiCore/FormComponent/UiButton/UiButton';
+import {useLocation, useNavigate} from 'react-router-dom';
+import {Link} from "react-router-dom";
 
 
 
 function Section3(props) {
+    let location= useLocation();
+    let navigate = useNavigate();
+    function handleClick(){
+        navigate(-1)
+    }
+    useEffect(()=>{
+    
+        // setUsersData(location.state);
+        console.log("location data",location.state);
+        // console.log("my ud",usersData);
+      })
     return (
         <div className='s3-outer-container'>
 
@@ -21,7 +34,7 @@ function Section3(props) {
                 <div className='s3-tm'>
                     <div className='s3-tm-inner-container'>
                         <div>
-                            <h2>James Warner</h2>
+                            <h2>{location.state.firstname + " " + location.state.lastname}</h2>
                         </div>
                         <div className='s3-search-teacher'>
                             <div className='s3-search-teacher-inner-container'>
@@ -33,22 +46,26 @@ function Section3(props) {
                                     <p>Teacher Status</p>
                                 </div>
                                 <div className='s3-st-input'>
-                                    <p>James Warner</p>
-                                    <p>JamesW@yopmail.com</p>
-                                    <p>+1-232-23432</p>
-                                    <p>Canada</p>
-                                    <p>Active</p>
+                                    <p>{location.state.firstname + " " + location.state.lastname}</p>
+                                    <p>{location.state.email}</p>
+                                    <p>{location.state.mobile1}</p>
+                                    <p>{location.state.country}</p>
+                                    <p>{location.state.teacheractivitystatus}</p>
                                 </div>
                                 <div>
-                                    <img src={image}></img>
+                                    <img src={location.state.uploadphoto} alt="Profile pic"></img>
                                 </div>
                             </div>
                             <div className='s3-go-back-button'>
+                                {/* <Link to="/section1/section2" > */}
                                 <UiButton
                                     text="Go back"
                                     type="submit"
                                 // className={styles.button}
+                                onClick={handleClick}
                                 ></UiButton>
+                                {/* </Link> */}
+                                
                             </div>
                         </div>
                     </div>
