@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState ,useEffect} from "react";
 import {
   DataGrid,
   ColDef,
@@ -11,6 +11,8 @@ import data from "./data.json";
 import IconButton from "@mui/material/IconButton";
 import ClearIcon from "@mui/icons-material/Clear";
 import FilterListIcon from "@mui/icons-material/FilterList";
+// import useNavigate from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 console.log(data);
 const columns: ColDef[] = [
@@ -83,23 +85,48 @@ const columns: ColDef[] = [
     
   },
 ];
-const rows = data.data.map((row) => {
-  return {
-    name: row.name,
-    id: row.id,
-    email:row.email,
-    phone: row.phone,
-    country: row.country,
-    teachingStatus: row.teachingStatus,
-    action: row.action,
-  };
-});
+var teachersData=[]
+// const rows = data.data.map((row) => {
+//   return {
+//     name: row.name,
+//     id: row.id,
+//     email:row.email,
+//     phone: row.phone,
+//     country: row.country,
+//     teachingStatus: row.teachingStatus,
+//     action: row.action,
+//   };
+// });
 export default function Data_table(props) {
   const [selection, setselection] = useState([]);
+  var navigate = useNavigate();
 
   var userData=(e)=>{
-    console.log("userdata",data.data[e]);  
+    for(let i=0;i<props.data.length;i++){
+      if(e== props.data[i].id){
+        navigate('/section1/section2/section3',{state:props.data[i]});
+        console.log("current user",props.data[i]);
+      }
+    }
+    console.log("userdata",e);  
   }
+  useEffect(()=>{
+    teachersData=props.data;
+    // setUsersData(location.state);
+    // console.log("location data",location.state);
+    console.log("data in table",props.data);
+  })
+  const rows = props.data.map((row) => {
+    return {
+      name: row.firstname + " " +row.lastname,
+      id: row.id,
+      email:row.email,
+      phone: row.mobile1,
+      country: row.country,
+      teachingStatus: row.teacheractivitystatus,
+      action: "View",
+    };
+  });
 
   return (
     <div

@@ -7,17 +7,17 @@ import Section3 from "./components/templates/Section3/Section3";
 
 function App() {
   return (
-    // <Routes>
-    //   <Route path="/" element={<Section1 />} />
-    //   <Route path="/search-page" element={<Section1 />} />
-    //   <Route path="/teachers-list" element={<Section2 />} />
-    //   <Route path="/teacher-information" element={<Section3/>}/>
-    // </Routes>
-    <div>
-      <Section1 />
-      <Section2 />
-      <Section3 />
-    </div>
+    <Routes>
+      <Route path="/" exact element={<Section1 />} />
+      <Route path="/section1" exact element={<Section1 />} />
+      <Route path="/section1/section2" exact element={<Section2 />} />
+      <Route path="/section1/section2/section3" exact element={<Section3/>}/>
+    </Routes>
+    // <div>
+    //   {/* <Section1 /> */}
+    //   {/* <Section2 /> */}
+    //   {/* <Section3 /> */}
+    // </div>
   );
 }
 
