@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import UiButton from "../../../UiCore/FormComponent/UiButton/UiButton";
 import "./HomePage.css";
 import Box from "@mui/material/Box";
@@ -15,7 +15,8 @@ import MenuItem from "@mui/material/MenuItem";
 import { Link, useNavigate } from "react-router-dom";
 import AllReg from "../All_register/Alreg";
 import Data_table from "../../Data_table/data_table";
-import data from '../../Data_table/data.json'
+import axios from "axios";
+import tableData from '../../Data_table/data.json'
 function a11yProps(index) {
   return {
     id: `simple-tab-${index}`,
@@ -28,15 +29,38 @@ function HomePage(props) {
   const [value, setValue] = React.useState(0);
   const [selectedRegion, setSelectedRegion] = React.useState(0);
   const [selectedRows,setSelectedRows]=useState([]);
+  const [regionData,setRegionData]=React.useState([]);
   const navigate=useNavigate();
+  useEffect(()=>{
+    getData(regions[0]);
+  },[])
   const handleChangeSelect = (event) => {
     setSelectedRegion(event.target.value);
+    var index=event.target.value;
+   getData(regions[index]);
   };
   const getSelectedRows=(totalData,selectedId)=>{
      console.log(totalData,selectedId)
-     var d=totalData.filter((data)=>selectedId.includes(data.id))
-    //  console.log("d is",d)
+     var d=totalData.filter((data)=>selectedId.includes(data.Country))
+     console.log("d is",d)
      setSelectedRows(d)
+   
+   }
+   function getData(region){
+    setRegionData(tableData.data)
+  //   axios.get('http://localhost:3001/home/countriesdata',{params:{region:region},})
+  //  .then((response)=>{
+  //    console.log('hi',response.data);
+  //    setRegionData(response.data);
+  //  })
+  }
+
+   const handleSearch=(event)=>{
+    // axios.get('http://localhost:3001/home/bycountry',{params:{countryname:region},})
+    // .then((response)=>{
+    //   console.log('hi',response.data);
+    //   setRegionData(response.data);
+    // })
   }
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -79,6 +103,7 @@ function HomePage(props) {
                       <SearchIcon />
                     </InputAdornment>
                   }
+                  onChange={handleSearch}
                 />
               </div>
               <div className="home-export-add-container">
@@ -90,7 +115,7 @@ function HomePage(props) {
             </div>
           </div>
           <hr className="hr-line"></hr>
-          <Data_table data={data.data} getSelectedRows={getSelectedRows} height={400} />
+          <Data_table  data={regionData}  getSelectedRows={getSelectedRows} height={400} />
           <div></div>
         </div>
       </div>

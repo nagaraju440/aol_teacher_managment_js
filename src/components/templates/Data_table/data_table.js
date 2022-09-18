@@ -53,17 +53,19 @@ const columns = [
   },
 ];
 
+
 export default function Data_table(props) {
+  const [selection, setselection] = useState([]);
+
   const rows = props.data.map((row) => {
     return {
-      id: row.id,
-      active: row.active,
-      inactive: row.inactive,
-      viewonly: row.viewonly,
-      totalteachers: row.totalteachers,
+      id: row.Country,
+      active: row.Active || 0, 
+      inactive: row.Inactive || 0,
+      viewonly: row.ViewOnly || 0,
+      totalteachers: parseInt(row.Active || 0)+ parseInt(row.Inactive || 0)+ parseInt(row.ViewOnly || 0)  ,
     };
   });
-  const [selection, setselection] = useState([]);
   return (
     <div
       style={{
@@ -123,10 +125,11 @@ export default function Data_table(props) {
           // }
         }}
         hideFooter="true"
+        
         selectionModel={selection}
-        onSelectionModelChange={(newSelection,data) => {
+        onSelectionModelChange={(newSelection) => {
           setselection(newSelection);
-          props.getSelectedRows&&props.getSelectedRows(rows,newSelection)
+          props.getSelectedRows&&props.getSelectedRows(props.data,newSelection)
         }}
       />
     </div>
