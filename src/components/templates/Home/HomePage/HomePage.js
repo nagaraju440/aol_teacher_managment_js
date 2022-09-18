@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import UiButton from "../../../UiCore/FormComponent/UiButton/UiButton";
 import "./HomePage.css";
 import Box from "@mui/material/Box";
@@ -15,6 +15,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { Link, useNavigate } from "react-router-dom";
 import AllReg from "../All_register/Alreg";
 import Data_table from "../../Data_table/data_table";
+import axios from "axios";
 
 function a11yProps(index) {
   return {
@@ -27,10 +28,30 @@ const regions = ["All Regions", "Latam", "Europe", "Oceania", "Far East"];
 function HomePage(props) {
   const [value, setValue] = React.useState(0);
   const [selectedRegion, setSelectedRegion] = React.useState(0);
+  const [regionData,setRegionData]=React.useState([]);
   const navigate=useNavigate();
+  useEffect(()=>{
+    getData(regions[0]);
+  },[])
   const handleChangeSelect = (event) => {
     setSelectedRegion(event.target.value);
-  };
+   var index=event.target.value;
+   getData(regions[index]);
+   }
+   function getData(region){
+    axios.get('http://localhost:3001/home/countriesdata',{params:{region:region},})
+   .then((response)=>{
+     console.log('hi',response.data);
+     setRegionData(response.data);
+   })}
+
+   const handleSearch=(event)=>{
+    // axios.get('http://localhost:3001/home/bycountry',{params:{countryname:region},})
+    // .then((response)=>{
+    //   console.log('hi',response.data);
+    //   setRegionData(response.data);
+    // })
+  }
   const handleChange = (event, newValue) => {
     setValue(newValue);
     console.log(newValue, "dfdf");
@@ -72,6 +93,7 @@ function HomePage(props) {
                       <SearchIcon />
                     </InputAdornment>
                   }
+                  onChange={handleSearch}
                 />
               </div>
               <div className="home-export-add-container">
@@ -83,7 +105,7 @@ function HomePage(props) {
             </div>
           </div>
           <hr className="hr-line"></hr>
-          <Data_table height={400} />
+          <Data_table  data={regionData} height={400} />
           <div></div>
         </div>
       </div>

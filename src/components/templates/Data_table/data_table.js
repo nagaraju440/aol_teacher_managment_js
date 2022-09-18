@@ -52,17 +52,21 @@ const columns = [
     disableColumnMenu: true,
   },
 ];
-const rows = data.data.map((row) => {
-  return {
-    id: row.id,
-    active: row.active,
-    inactive: row.inactive,
-    viewonly: row.viewonly,
-    totalteachers: row.totalteachers,
-  };
-});
+
+
 export default function Data_table(props) {
+  console.log(props.data);
   const [selection, setselection] = useState([]);
+
+  const rows = props.data.map((row) => {
+    return {
+      id: row.Country,
+      active: row.Active || 0, 
+      inactive: row.Inactive || 0,
+      viewonly: row.ViewOnly || 0,
+      totalteachers: parseInt(row.Active || 0)+ parseInt(row.Inactive || 0)+ parseInt(row.ViewOnly || 0)  ,
+    };
+  });
   return (
     <div
       style={{
