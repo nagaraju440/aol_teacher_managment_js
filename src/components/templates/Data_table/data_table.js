@@ -52,16 +52,17 @@ const columns = [
     disableColumnMenu: true,
   },
 ];
-const rows = data.data.map((row) => {
-  return {
-    id: row.id,
-    active: row.active,
-    inactive: row.inactive,
-    viewonly: row.viewonly,
-    totalteachers: row.totalteachers,
-  };
-});
+
 export default function Data_table(props) {
+  const rows = props.data.map((row) => {
+    return {
+      id: row.id,
+      active: row.active,
+      inactive: row.inactive,
+      viewonly: row.viewonly,
+      totalteachers: row.totalteachers,
+    };
+  });
   const [selection, setselection] = useState([]);
   return (
     <div
@@ -122,9 +123,10 @@ export default function Data_table(props) {
           // }
         }}
         hideFooter="true"
-        onSelectionModelChange={(newSelection) => {
-          console.log(newSelection, "hsdmhdkjwa");
+        selectionModel={selection}
+        onSelectionModelChange={(newSelection,data) => {
           setselection(newSelection);
+          props.getSelectedRows&&props.getSelectedRows(rows,newSelection)
         }}
       />
     </div>

@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import UiButton from "../../../UiCore/FormComponent/UiButton/UiButton";
 import "./Export.css";
 import Box from "@mui/material/Box";
@@ -14,7 +14,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
@@ -31,9 +31,11 @@ function a11yProps(index) {
 
 const regions = ["All Regions", "Latam", "Europe", "Oceania", "Far East"];
 function Export(props) {
+  const location=useLocation();
   const [value, setValue] = React.useState(0);
   const [selectedRegion, setSelectedRegion] = React.useState(0);
-
+  const [selectedRows,setSelectedRows]=useState(location.state.selectedRows)
+  // console.log("selected rows are",selectedRows)
   const handleChangeSelect = (event) => {
     setSelectedRegion(event.target.value);
   };
@@ -101,7 +103,7 @@ function Export(props) {
             </div>
           </div>
           <hr className="hr-line"></hr>
-          <Data_table height={530} />
+          <Data_table data={selectedRows} height={530} />
 
           <div></div>
         </div>

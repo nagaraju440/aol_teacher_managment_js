@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import UiButton from "../../../UiCore/FormComponent/UiButton/UiButton";
 import "./HomePage.css";
 import Box from "@mui/material/Box";
@@ -15,7 +15,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { Link, useNavigate } from "react-router-dom";
 import AllReg from "../All_register/Alreg";
 import Data_table from "../../Data_table/data_table";
-
+import data from '../../Data_table/data.json'
 function a11yProps(index) {
   return {
     id: `simple-tab-${index}`,
@@ -27,10 +27,17 @@ const regions = ["All Regions", "Latam", "Europe", "Oceania", "Far East"];
 function HomePage(props) {
   const [value, setValue] = React.useState(0);
   const [selectedRegion, setSelectedRegion] = React.useState(0);
+  const [selectedRows,setSelectedRows]=useState([]);
   const navigate=useNavigate();
   const handleChangeSelect = (event) => {
     setSelectedRegion(event.target.value);
   };
+  const getSelectedRows=(totalData,selectedId)=>{
+     console.log(totalData,selectedId)
+     var d=totalData.filter((data)=>selectedId.includes(data.id))
+    //  console.log("d is",d)
+     setSelectedRows(d)
+  }
   const handleChange = (event, newValue) => {
     setValue(newValue);
     console.log(newValue, "dfdf");
@@ -75,7 +82,7 @@ function HomePage(props) {
                 />
               </div>
               <div className="home-export-add-container">
-                <UiButton text="Export" onClick={()=>{navigate('/home/export')}} ></UiButton>
+                <UiButton text="Export" onClick={()=>{navigate('/home/export',{state:{selectedRows:selectedRows}})}} ></UiButton>
                 <div>
                   <UiButton text={"Add Teacher"}></UiButton>
                 </div>
@@ -83,7 +90,7 @@ function HomePage(props) {
             </div>
           </div>
           <hr className="hr-line"></hr>
-          <Data_table height={400} />
+          <Data_table data={data.data} getSelectedRows={getSelectedRows} height={400} />
           <div></div>
         </div>
       </div>
