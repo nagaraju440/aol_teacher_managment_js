@@ -33,8 +33,9 @@ const regions = ["All Regions", "Latam", "Europe", "Oceania", "Far East"];
 function Export(props) {
   const location=useLocation();
   const [value, setValue] = React.useState(0);
-  const [selectedRegion, setSelectedRegion] = React.useState(0);
-  const [selectedRows,setSelectedRows]=useState(location.state.selectedRows)
+  const [selectedRows,setSelectedRows]=useState([])
+  const [regionData,setRegionData]=useState(location.state.selectedRows)
+  const [selectedRegion,setSelectedRegion]=useState(location.state.selectedRegion)
   // console.log("selected rows are",selectedRows)
   const handleChangeSelect = (event) => {
     setSelectedRegion(event.target.value);
@@ -43,7 +44,12 @@ function Export(props) {
     setValue(newValue);
     console.log(newValue, "dfdf");
   };
-
+  const getSelectedRows = (totalData, selectedId) => {
+    console.log(totalData, selectedId);
+    var d = totalData.filter((data) => selectedId.includes(data.Country));
+    // console.log("d is", d);
+    setSelectedRows(d);
+  };
   //   const tableRef = useRef(null);
   //  const { onDownload } = useDownloadExcel({
   //     currentTableRef: tableRef.current,
@@ -66,7 +72,7 @@ function Export(props) {
         <div className="export-inner-container2">
           <div>
             <div className="export-heading-container">
-              <div className="export-heading">Region: All Regions</div>
+              <div className="export-heading">Region: {selectedRegion}</div>
               <div className="export-close">
                 <Link to="/home">
                   <IconButton>
@@ -92,18 +98,23 @@ function Export(props) {
                 />
               </div>
               <div className="export-buttons-container">
-                <div className="export-selectedrows-button">
+                <UiButton text="Export Selected Rows"  disabled={selectedRows.length!=0?false:true} ></UiButton>
+                {/* <div className="export-selectedrows-button">
                   Export Selected Rows
                 </div>
 
                 <div className="export-allrows-button" onClick={handleExport}>
                   Export All Rows
-                </div>
+                </div> */}
+                <UiButton text="Export All Rows"   ></UiButton>
+
               </div>
             </div>
           </div>
           <hr className="hr-line"></hr>
-          <Data_table data={selectedRows} height={530} />
+          <Data_table data={regionData}   
+            getSelectedRows={getSelectedRows}
+          height={530} />
 
           <div></div>
         </div>

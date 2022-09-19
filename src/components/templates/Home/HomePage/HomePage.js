@@ -43,6 +43,7 @@ function HomePage(props) {
   const [value, setValue] = React.useState(0);
   const [selectedRegion, setSelectedRegion] = React.useState(0);
   const [selectedRows, setSelectedRows] = useState([]);
+  const [filteredData,setFilteredData]=useState([]);
   const [regionData, setRegionData] = React.useState([]);
   const navigate = useNavigate();
   useEffect(() => {
@@ -56,7 +57,7 @@ function HomePage(props) {
   const getSelectedRows = (totalData, selectedId) => {
     console.log(totalData, selectedId);
     var d = totalData.filter((data) => selectedId.includes(data.Country));
-    console.log("d is", d);
+    // console.log("d is", d);
     setSelectedRows(d);
   };
   function getData(region) {
@@ -88,6 +89,7 @@ function HomePage(props) {
           // use/access the results
           console.log("res1", responseOne);
           setRegionData(responseOne.data);
+          setFilteredData(responseOne.data)
           console.log("res2", responseTwo);
         })
       )
@@ -98,15 +100,9 @@ function HomePage(props) {
   }
 
   const handleSearch = (event) => {
-    // axios.get('http://localhost:3001/home/bycountry',{params:{countryname:region},})
-    // .then((response)=>{
-    //   console.log('hi',response.data);
-    //   setRegionData(response.data);
-    // })
-  };
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-    console.log(newValue, "dfdf");
+    var value=event.target.value;
+    var temp=regionData.filter((data)=>data.Country.toLowerCase().includes(value.toLowerCase()))
+    setFilteredData(temp)
   };
   return (
     <div>
@@ -153,7 +149,7 @@ function HomePage(props) {
                   text="Export"
                   onClick={() => {
                     navigate("/home/export", {
-                      state: { selectedRows: selectedRows },
+                      state: { selectedRows: filteredData ,selectedRegion:regions[selectedRegion] },
                     });
                   }}
                 ></UiButton>
@@ -165,7 +161,7 @@ function HomePage(props) {
           </div>
           <hr className="hr-line"></hr>
           <Data_table
-            data={regionData}
+            data={filteredData}
             getSelectedRows={getSelectedRows}
             height={400}
           />

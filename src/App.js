@@ -2,7 +2,7 @@ import React from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import "./App.css";
 import ForgotPassword from "./pages/forgetpassword";
-import NewPassword from "./pages/NewPassword";
+import NewPassword from "./pages/newpassword";
 import LoginPage from "./pages/login";
 import Change_Password from "./components/templates/Auth/ChangePassword/changepassword.js";
 import ExportPage from "./pages/home/export";
