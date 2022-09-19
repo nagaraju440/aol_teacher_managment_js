@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import UiButton from "../../../UiCore/FormComponent/UiButton/UiButton";
 import "./HomePage.css";
 import Box from "@mui/material/Box";
@@ -16,7 +16,7 @@ import { Link, useNavigate } from "react-router-dom";
 import AllReg from "../All_register/Alreg";
 import Data_table from "../../Data_table/data_table";
 import axios from "axios";
-import tableData from '../../Data_table/data.json'
+import tableData from "../../Data_table/data.json";
 function a11yProps(index) {
   return {
     id: `simple-tab-${index}`,
@@ -24,44 +24,86 @@ function a11yProps(index) {
   };
 }
 
-const regions = ["All Regions", "Latam", "Europe", "Oceania", "Far East"];
+// const regions = ["All Regions", "Latam", "Europe", "Oceania", "Far East"];
+const regions = [
+  "All Regions",
+  "Africa",
+  "Brazil",
+  "Central Asia",
+  "Europe",
+  "Far East",
+  "Middle East",
+  "North America",
+  "Oceania",
+  "Russia",
+  "South America",
+  "South Asia",
+];
 function HomePage(props) {
   const [value, setValue] = React.useState(0);
   const [selectedRegion, setSelectedRegion] = React.useState(0);
-  const [selectedRows,setSelectedRows]=useState([]);
-  const [regionData,setRegionData]=React.useState([]);
-  const navigate=useNavigate();
-  useEffect(()=>{
+  const [selectedRows, setSelectedRows] = useState([]);
+  const [regionData, setRegionData] = React.useState([]);
+  const navigate = useNavigate();
+  useEffect(() => {
     getData(regions[0]);
-  },[])
+  }, []);
   const handleChangeSelect = (event) => {
     setSelectedRegion(event.target.value);
-    var index=event.target.value;
-   getData(regions[index]);
+    var index = event.target.value;
+    getData(regions[index]);
   };
-  const getSelectedRows=(totalData,selectedId)=>{
-     console.log(totalData,selectedId)
-     var d=totalData.filter((data)=>selectedId.includes(data.Country))
-     console.log("d is",d)
-     setSelectedRows(d)
-   
-   }
-   function getData(region){
-    setRegionData(tableData.data)
-  //   axios.get('http://localhost:3001/home/countriesdata',{params:{region:region},})
-  //  .then((response)=>{
-  //    console.log('hi',response.data);
-  //    setRegionData(response.data);
-  //  })
+  const getSelectedRows = (totalData, selectedId) => {
+    console.log(totalData, selectedId);
+    var d = totalData.filter((data) => selectedId.includes(data.Country));
+    console.log("d is", d);
+    setSelectedRows(d);
+  };
+  function getData(region) {
+    // setRegionData(tableData.data)
+    // console.log("region", region);
+    // console.log(`${process.env.REACT_APP_BASE_API_URL}`);
+    let one = "http://13.234.255.46:3001/home/countriesdata";
+    let two = "http://13.234.255.46:3001/home/masterdata";
+
+    // axios
+    //   .get(`http://13.234.255.46:3001/home/countriesdata`, {
+    //     params: { region: region },
+    //   })
+    //   .then((response) => {
+    //     console.log("hi", response.data);
+    //     setRegionData(response.data);
+    //   });
+
+    const requestOne = axios.get(one, { params: { region: region } });
+    const requestTwo = axios.get(two);
+
+    axios
+      .all([requestOne, requestTwo])
+      .then(
+        axios.spread((...responses) => {
+          const responseOne = responses[0];
+          const responseTwo = responses[1];
+
+          // use/access the results
+          console.log("res1", responseOne);
+          setRegionData(responseOne.data);
+          console.log("res2", responseTwo);
+        })
+      )
+      .catch((errors) => {
+        // react on errors.
+        console.error(errors);
+      });
   }
 
-   const handleSearch=(event)=>{
+  const handleSearch = (event) => {
     // axios.get('http://localhost:3001/home/bycountry',{params:{countryname:region},})
     // .then((response)=>{
     //   console.log('hi',response.data);
     //   setRegionData(response.data);
     // })
-  }
+  };
   const handleChange = (event, newValue) => {
     setValue(newValue);
     console.log(newValue, "dfdf");
@@ -107,7 +149,14 @@ function HomePage(props) {
                 />
               </div>
               <div className="home-export-add-container">
-                <UiButton text="Export" onClick={()=>{navigate('/home/export',{state:{selectedRows:selectedRows}})}} ></UiButton>
+                <UiButton
+                  text="Export"
+                  onClick={() => {
+                    navigate("/home/export", {
+                      state: { selectedRows: selectedRows },
+                    });
+                  }}
+                ></UiButton>
                 <div>
                   <UiButton text={"Add Teacher"}></UiButton>
                 </div>
@@ -115,7 +164,11 @@ function HomePage(props) {
             </div>
           </div>
           <hr className="hr-line"></hr>
-          <Data_table  data={regionData}  getSelectedRows={getSelectedRows} height={400} />
+          <Data_table
+            data={regionData}
+            getSelectedRows={getSelectedRows}
+            height={400}
+          />
           <div></div>
         </div>
       </div>
