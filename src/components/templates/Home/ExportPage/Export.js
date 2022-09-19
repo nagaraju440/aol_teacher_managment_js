@@ -10,18 +10,18 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import InputAdornment from "@mui/material/InputAdornment";
-// import * as XLSX from "xlsx/xlsx.mjs";
+import * as XLSX from "xlsx/xlsx.mjs";
 
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Navbar from "../../../UiCore/Navbar/Navbar.js";
-import UserData from "../../Data_table/data.json";
+// import UserData from "../../Data_table/data.json";
 import Data_table from "../../Data_table/data_table";
-console.log("Userdata iss", UserData.data);
+// console.log("Userdata iss", UserData.data);
 function a11yProps(index) {
   return {
     id: `simple-tab-${index}`,
@@ -31,11 +31,16 @@ function a11yProps(index) {
 
 const regions = ["All Regions", "Latam", "Europe", "Oceania", "Far East"];
 function Export(props) {
-  const location=useLocation();
+  const location = useLocation();
   const [value, setValue] = React.useState(0);
-  const [selectedRows,setSelectedRows]=useState([])
-  const [regionData,setRegionData]=useState(location.state.selectedRows)
-  const [selectedRegion,setSelectedRegion]=useState(location.state.selectedRegion)
+  const [selectedRows, setSelectedRows] = useState([]);
+  const [regionData, setRegionData] = useState(location.state.selectedRows);
+  const [selectedRegion, setSelectedRegion] = useState(
+    location.state.selectedRegion
+  );
+  const [filteredData, setFilteredData] = useState(location.state.selectedRows);
+
+  let navigate = useNavigate();
   // console.log("selected rows are",selectedRows)
   const handleChangeSelect = (event) => {
     setSelectedRegion(event.target.value);
@@ -57,12 +62,31 @@ function Export(props) {
   //     sheet: "Teachers Data",
   //   });
 
-  const handleExport = () => {
-    console.log("this is your file");
-    // var wb = XLSX.utils.book_new();
-    // var ws = XLSX.utils.json_to_sheet(UserData.data);
-    // XLSX.utils.book_append_sheet(wb, ws, "MySheet1");
-    // XLSX.writeFile(wb, "AOL Teachers Information.xlsx");
+  const handleExportAllRows = () => {
+    // console.log("this is your file");
+    var wb = XLSX.utils.book_new();
+    var ws = XLSX.utils.json_to_sheet(regionData);
+    XLSX.utils.book_append_sheet(wb, ws, "Teachers Data");
+    XLSX.writeFile(wb, "AOL Teachers Information.xlsx");
+  };
+  const handleExportSelectedRows = () => {
+    // console.log("this is your file");
+    var wb = XLSX.utils.book_new();
+    var ws = XLSX.utils.json_to_sheet(selectedRows);
+    XLSX.utils.book_append_sheet(wb, ws, "Teachers Data");
+    XLSX.writeFile(wb, "AOL Teachers Information.xlsx");
+  };
+
+  function handleClose() {
+    console.log("closing");
+    navigate(-1);
+  }
+  const handleSearch = (event) => {
+    var value = event.target.value;
+    var temp = regionData.filter((data) =>
+      data.Country.toLowerCase().includes(value.toLowerCase())
+    );
+    setFilteredData(temp);
   };
 
   return (
@@ -74,11 +98,11 @@ function Export(props) {
             <div className="export-heading-container">
               <div className="export-heading">Region: {selectedRegion}</div>
               <div className="export-close">
-                <Link to="/home">
-                  <IconButton>
-                    <CloseIcon fontSize="large" />
-                  </IconButton>
-                </Link>
+                {/* <Link to="/home"> */}
+                <IconButton>
+                  <CloseIcon fontSize="large" onClick={handleClose} />
+                </IconButton>
+                {/* </Link> */}
               </div>
             </div>
 
@@ -95,10 +119,15 @@ function Export(props) {
                       <SearchIcon />
                     </InputAdornment>
                   }
+                  onChange={handleSearch}
                 />
               </div>
               <div className="export-buttons-container">
-                <UiButton text="Export Selected Rows"  disabled={selectedRows.length!=0?false:true} ></UiButton>
+                <UiButton
+                  text="Export Selected Rows"
+                  disabled={selectedRows.length != 0 ? false : true}
+                  onClick={handleExportSelectedRows}
+                ></UiButton>
                 {/* <div className="export-selectedrows-button">
                   Export Selected Rows
                 </div>
@@ -106,15 +135,20 @@ function Export(props) {
                 <div className="export-allrows-button" onClick={handleExport}>
                   Export All Rows
                 </div> */}
-                <UiButton text="Export All Rows"   ></UiButton>
-
+                <UiButton
+                  text="Export All Rows"
+                  onClick={handleExportAllRows}
+                ></UiButton>
               </div>
             </div>
           </div>
           <hr className="hr-line"></hr>
-          <Data_table data={regionData}   
+          <Data_table
+            // data={regionData}
+            data={filteredData}
             getSelectedRows={getSelectedRows}
-          height={530} />
+            height={530}
+          />
 
           <div></div>
         </div>

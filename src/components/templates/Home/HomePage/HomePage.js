@@ -43,11 +43,19 @@ function HomePage(props) {
   const [value, setValue] = React.useState(0);
   const [selectedRegion, setSelectedRegion] = React.useState(0);
   const [selectedRows, setSelectedRows] = useState([]);
-  const [filteredData,setFilteredData]=useState([]);
+  const [filteredData, setFilteredData] = useState([]);
   const [regionData, setRegionData] = React.useState([]);
+  const [allRegSummaryData, setAllRegSummaryData] = React.useState(null);
   const navigate = useNavigate();
   useEffect(() => {
     getData(regions[0]);
+    AllRegSummaryData();
+
+    // setInterval(() => {
+    //   if (!allRegSummaryData) {
+    //     AllRegSummaryData();
+    //   }
+    // }, 1000);
   }, []);
   const handleChangeSelect = (event) => {
     setSelectedRegion(event.target.value);
@@ -57,52 +65,44 @@ function HomePage(props) {
   const getSelectedRows = (totalData, selectedId) => {
     console.log(totalData, selectedId);
     var d = totalData.filter((data) => selectedId.includes(data.Country));
-    // console.log("d is", d);
     setSelectedRows(d);
   };
+
   function getData(region) {
-    // setRegionData(tableData.data)
-    // console.log("region", region);
-    // console.log(`${process.env.REACT_APP_BASE_API_URL}`);
-    let one = "http://13.234.255.46:3001/home/countriesdata";
-    let two = "http://13.234.255.46:3001/home/masterdata";
-
-    // axios
-    //   .get(`http://13.234.255.46:3001/home/countriesdata`, {
-    //     params: { region: region },
-    //   })
-    //   .then((response) => {
-    //     console.log("hi", response.data);
-    //     setRegionData(response.data);
-    //   });
-
-    const requestOne = axios.get(one);
-    const requestTwo = axios.get(two);
-
     axios
-      .all([requestOne, requestTwo])
-      .then(
-        axios.spread((...responses) => {
-          const responseOne = responses[0];
-          const responseTwo = responses[1];
-
-          // use/access the results
-          console.log("res1", responseOne);
-          setRegionData(responseOne.data);
-          setFilteredData(responseOne.data)
-          console.log("res2", responseTwo);
-        })
-      )
-      .catch((errors) => {
-        // react on errors.
-        console.error(errors);
+      .get(`http://13.234.255.46:3001/home/countriesdata`, {
+        params: { region: region },
+      })
+      .then((response) => {
+        console.log("hi", response.data);
+        var temp = response.data.map((d) => {
+          return {
+            ...d,
+            "Total Teachers":
+              parseInt(d.Active || 0) +
+              parseInt(d.Inactive || 0) +
+              parseInt(d.ViewOnly || 0),
+          };
+        });
+        console.log("temp is ", temp);
+        setRegionData(temp);
+        setFilteredData(temp);
       });
   }
 
+  function AllRegSummaryData() {
+    axios.get(`http://13.234.255.46:3001/home/masterdata`).then((response) => {
+      console.log("hi all reg", response.data);
+      setAllRegSummaryData(response.data);
+    });
+  }
+
   const handleSearch = (event) => {
-    var value=event.target.value;
-    var temp=regionData.filter((data)=>data.Country.toLowerCase().includes(value.toLowerCase()))
-    setFilteredData(temp)
+    var value = event.target.value;
+    var temp = regionData.filter((data) =>
+      data.Country.toLowerCase().includes(value.toLowerCase())
+    );
+    setFilteredData(temp);
   };
   return (
     <div>
@@ -149,7 +149,10 @@ function HomePage(props) {
                   text="Export"
                   onClick={() => {
                     navigate("/home/export", {
-                      state: { selectedRows: filteredData ,selectedRegion:regions[selectedRegion] },
+                      state: {
+                        selectedRows: filteredData,
+                        selectedRegion: regions[selectedRegion],
+                      },
                     });
                   }}
                 ></UiButton>
@@ -169,27 +172,19 @@ function HomePage(props) {
         </div>
       </div>
       <div className="summary-container">
-        <AllReg />
+        {allRegSummaryData ? (
+          <div>
+            <AllReg data={allRegSummaryData} />
+          </div>
+        ) : (
+          <div>loading</div>
+        )}
+
+        {/* <AllReg data={allRegSummaryData||} /> */}
+        {/* <AllReg /> */}
       </div>
     </div>
   );
 }
 
 export default HomePage;
-
-{
-  /* <Box sx={{ width: '100%' }}>
-                                <Box sx={{ borderBottom: 1, borderColor: 'divider',width:'100%' }}>
-                                    <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" className='home-tab' style={{display:"flex",width:"60%",justifyContent:"space-between"}}>
-                    
-                                        <Tab label="All Regions" {...a11yProps(0)} style={{backgroundColor:value==0?"#1976D2":"#D3D3D3",color:value==0?"white":"black"}} />
-                                        <Tab label="LATAM" {...a11yProps(1)} style={{backgroundColor:value==1?"#1976D2":"#D3D3D3",color:value==1?"white":"black"}}/>
-                                        <Tab label="Europe" {...a11yProps(2)} style={{backgroundColor:value==2?"#1976D2":"#D3D3D3",color:value==2?"white":"black"}}/>
-                                        <Tab label="Oceania" {...a11yProps(3)} style={{backgroundColor:value==3?"#1976D2":"#D3D3D3",color:value==3?"white":"black"}}/>
-                                        <Tab label="Far East" {...a11yProps(4)} style={{backgroundColor:value==4?"#1976D2":"#D3D3D3",color:value==4?"white":"black"}}/>
-                              
-                                    </Tabs>
-                                </Box>
-
-                            </Box> */
-}

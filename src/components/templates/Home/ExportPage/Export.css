@@ -36,6 +36,7 @@
 
 }
 .export-subheading-container{
+    
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -49,11 +50,11 @@
     display: flex;
     align-items: center;
     gap: 20px;
-    width: 70%;
+    width: 50%;
     padding-left: 56px;
 }
 .export-search{
-    width: 39%;
+    width: 50%;
     height: 45px;
     border: 1px solid black;
     border-radius: 6px;
@@ -62,6 +63,7 @@
 
 
 .export-buttons-container{
+   
     display: flex;
     align-items: center;
     gap: 40px;
