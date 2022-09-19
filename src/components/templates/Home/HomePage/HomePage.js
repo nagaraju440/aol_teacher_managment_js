@@ -75,7 +75,7 @@ function HomePage(props) {
     //     setRegionData(response.data);
     //   });
 
-    const requestOne = axios.get(one, { params: { region: region } });
+    const requestOne = axios.get(one);
     const requestTwo = axios.get(two);
 
     axios
