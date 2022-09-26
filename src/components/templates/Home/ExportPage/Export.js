@@ -105,7 +105,6 @@ function Export(props) {
                 {/* </Link> */}
               </div>
             </div>
-
             <div className="export-subheading-container">
               <div className="export-icon-left-container">
                 <InputBase

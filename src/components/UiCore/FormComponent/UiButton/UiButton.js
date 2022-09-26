@@ -4,7 +4,7 @@ import React from "react";
 import styles from "./UiButton.module.css";
 const UiButton= (props) => {
   return (
-    <Button   variant="contained" {...props} className={props.className}   >
+    <Button  variant="contained" {...props} className={props.className}   >
      {props.text}
     </Button>
   );
