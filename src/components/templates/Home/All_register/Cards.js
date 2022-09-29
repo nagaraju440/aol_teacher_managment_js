@@ -1,9 +1,11 @@
+/* eslint-disable react/jsx-key */
 import React from "react";
 import "./Cards.css";
 
 class Cards extends React.Component {
   constructor(props) {
     super(props);
+    // console.log(props);
     this.state = {
       Region: [
         {
@@ -66,7 +68,7 @@ class Cards extends React.Component {
     };
   }
   render(props) {
-    console.log("props in card", this.props.data);
+    // console.log("props in card", this.props);
     return (
       <div className="cards-outer-contanier">
         <div className="cards-inner-container1">
@@ -78,17 +80,22 @@ class Cards extends React.Component {
                   <h5 className="cards-heading">Teachers Count By Region</h5>
                   <div className="bb"></div>
                   <div className="card-scroll">
-                    {this.state.Region.map((l, i) => {
-                      return (
-                        <div>
-                          <div className="card-content">
-                            <div className="cards-title">{l.title}</div>
-                            <div className="cards-count">{l.count}</div>
+                    {/* {console.log(props, Object.keys(this.props.regionCountMap))} */}
+                    {this.props &&
+                      this.props.regionCountMap &&
+                      Object.keys(this.props.regionCountMap).map((l, i) => {
+                        return (
+                          <div>
+                            <div className="card-content">
+                              <div className="cards-title">{l}</div>
+                              <div className="cards-count">
+                                {this.props.regionCountMap[l]}
+                              </div>
+                            </div>
+                            <div className="cards-border"></div>
                           </div>
-                          <div className="cards-border"></div>
-                        </div>
-                      );
-                    })}
+                        );
+                      })}
                   </div>
                 </div>
               </div>
@@ -103,7 +110,7 @@ class Cards extends React.Component {
                       <div>
                         <div className="card-content">
                           <div className="cards-title">
-                            {l.fulltimeofficebearer ? "Full time" : "Part Time"}
+                            {l.teachertype ? "Full time" : "Part Time"}
                           </div>
                           <div className="cards-count">{l.count}</div>
                         </div>

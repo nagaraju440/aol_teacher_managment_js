@@ -47,10 +47,10 @@ function Export(props) {
   };
   const handleChange = (event, newValue) => {
     setValue(newValue);
-    console.log(newValue, "dfdf");
+    // console.log(newValue, "dfdf");
   };
   const getSelectedRows = (totalData, selectedId) => {
-    console.log(totalData, selectedId);
+    // console.log(totalData, selectedId);
     var d = totalData.filter((data) => selectedId.includes(data.Country));
     // console.log("d is", d);
     setSelectedRows(d);
@@ -78,7 +78,7 @@ function Export(props) {
   };
 
   function handleClose() {
-    console.log("closing");
+    // console.log("closing");
     navigate(-1);
   }
   const handleSearch = (event) => {
@@ -98,13 +98,15 @@ function Export(props) {
             <div className="export-heading-container">
               <div className="export-heading">Region: {selectedRegion}</div>
               <div className="export-close">
-                {/* <Link to="/home"> */}
+                <div className="export-selection-number">
+                  {selectedRows.length} records selected
+                </div>
                 <IconButton>
                   <CloseIcon fontSize="large" onClick={handleClose} />
                 </IconButton>
-                {/* </Link> */}
               </div>
             </div>
+
             <div className="export-subheading-container">
               <div className="export-icon-left-container">
                 <InputBase
@@ -146,7 +148,7 @@ function Export(props) {
             // data={regionData}
             data={filteredData}
             getSelectedRows={getSelectedRows}
-            height={530}
+            height={500}
           />
 
           <div></div>

@@ -17,6 +17,7 @@ import AllReg from "../All_register/Alreg";
 import Data_table from "../../Data_table/data_table";
 import axios from "axios";
 import tableData from "../../Data_table/data.json";
+
 function a11yProps(index) {
   return {
     id: `simple-tab-${index}`,
@@ -46,16 +47,18 @@ function HomePage(props) {
   const [filteredData, setFilteredData] = useState([]);
   const [regionData, setRegionData] = React.useState([]);
   const [allRegSummaryData, setAllRegSummaryData] = React.useState(null);
+
+  const [region_countryData, setRegion_countryData] = React.useState([]);
+  const [regionCountMap, setRegionCountMap] = useState({});
+  const [allRegionData, setAllRegionData] = React.useState([]);
+
   const navigate = useNavigate();
+
   useEffect(() => {
     getData(regions[0]);
     AllRegSummaryData();
-
-    // setInterval(() => {
-    //   if (!allRegSummaryData) {
-    //     AllRegSummaryData();
-    //   }
-    // }, 1000);
+    getRegionCountryData();
+    getAllData();
   }, []);
   const handleChangeSelect = (event) => {
     setSelectedRegion(event.target.value);
@@ -63,18 +66,66 @@ function HomePage(props) {
     getData(regions[index]);
   };
   const getSelectedRows = (totalData, selectedId) => {
-    console.log(totalData, selectedId);
+    // console.log(totalData, selectedId);
     var d = totalData.filter((data) => selectedId.includes(data.Country));
     setSelectedRows(d);
   };
 
+  useEffect(() => {
+    const token = sessionStorage.getItem("user");
+    let mounted = true;
+
+    // console.log(region_countryData, regionData, "ALL THE DATA I NEED");
+    const regionCountMap = {};
+    allRegionData.map((i) => {
+      const itemRegionName = region_countryData.find(
+        (item) => i.Country === item.countryname
+      ).regionname;
+      // console.log(
+      //   region_countryData.find((item) => i.Country === item.countryname),
+      //   "im here"
+      // );
+      if (regionCountMap[itemRegionName]) {
+        regionCountMap[itemRegionName] =
+          regionCountMap[itemRegionName] +
+          +i.Active +
+          +i.Inactive +
+          +i.ViewOnly;
+      } else {
+        regionCountMap[itemRegionName] = +i.Active + +i.Inactive + +i.ViewOnly;
+      }
+    });
+    // console.log(region_countryData, regionData, regionCountMap, 'ALL THE DATA I NEED');
+
+    // console.log("regionCountMap-->", regionCountMap);
+
+    //sorting
+    // const sortObject = (o) =>
+    //   Object.keys(o)
+    //     .sort()
+    //     .reduce((r, k) => ((r[k] = o[k]), r), {});
+    // let sorted_regioncount = sortObject(regionCountMap);
+    // console.log('sorting object', sorted_regioncount);
+    // setRegionCountMap(sorted_regioncount);
+    // console.log('sorting region count map ->', regionCountMap);
+
+    if (Object.keys(regionCountMap).length != 0) {
+      const sumValues = Object.values(regionCountMap).reduce((a, b) => a + b);
+      // console.log("sum values", sumValues);
+      setRegionCountMap({ "All Regions Count": sumValues, ...regionCountMap });
+    }
+    return () => (mounted = false);
+  }, [region_countryData, allRegionData]);
+
   function getData(region) {
+    const token = sessionStorage.getItem("user");
     axios
       .get(`http://13.234.255.46:3001/home/countriesdata`, {
         params: { region: region },
+        headers: { authorization: `Bearer ${token}` },
       })
       .then((response) => {
-        console.log("hi", response.data);
+        // console.log("hi", response.data);
         var temp = response.data.map((d) => {
           return {
             ...d,
@@ -84,17 +135,56 @@ function HomePage(props) {
               parseInt(d.ViewOnly || 0),
           };
         });
-        console.log("temp is ", temp);
+        // console.log("temp is ", temp);
         setRegionData(temp);
         setFilteredData(temp);
       });
   }
+  function getAllData(region) {
+    const token = sessionStorage.getItem("user");
+    axios
+      .get(`http://13.234.255.46:3001/home/countriesdata`, {
+        params: { region: "All Regions" },
+        headers: { authorization: `Bearer ${token}` },
+      })
+      .then((response) => {
+        // console.log("hi", response.data);
+        var temp = response.data.map((d) => {
+          return {
+            ...d,
+            "Total Teachers":
+              parseInt(d.Active || 0) +
+              parseInt(d.Inactive || 0) +
+              parseInt(d.ViewOnly || 0),
+          };
+        });
+        // console.log("temp is ", temp);
+        setAllRegionData(temp);
+        setFilteredData(temp);
+      });
+  }
+  function getRegionCountryData() {
+    const token = sessionStorage.getItem("user");
+    axios
+      .get(`http://13.234.255.46:3001/home/regions`, {
+        headers: { authorization: `Bearer ${token}` },
+      })
+      .then((response) => {
+        // console.log("reg - country mapping", response.data);
+        setRegion_countryData(response.data);
+      });
+  }
 
   function AllRegSummaryData() {
-    axios.get(`http://13.234.255.46:3001/home/masterdata`).then((response) => {
-      console.log("hi all reg", response.data);
-      setAllRegSummaryData(response.data);
-    });
+    const token = sessionStorage.getItem("user");
+    axios
+      .get(`http://13.234.255.46:3001/home/masterdata`, {
+        headers: { authorization: `Bearer ${token}` },
+      })
+      .then((response) => {
+        // console.log("hi all reg", response.data);
+        setAllRegSummaryData(response.data);
+      });
   }
 
   const handleSearch = (event) => {
@@ -104,6 +194,8 @@ function HomePage(props) {
     );
     setFilteredData(temp);
   };
+
+  // region_countryData;
   return (
     <div>
       <div className="home-inner-container1">
@@ -116,7 +208,7 @@ function HomePage(props) {
                 </div>
                 <div className="slect-dropdown-container">
                   <Select
-                    sx={{ height: 43 }}
+                    sx={{ height: 40 }}
                     className="select-dropdown"
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
@@ -157,7 +249,10 @@ function HomePage(props) {
                   }}
                 ></UiButton>
                 <div>
-                  <UiButton text={"Add Teacher"}></UiButton>
+                  <UiButton
+                    onClick={() => navigate("/teachers/new")}
+                    text={"Add Teacher"}
+                  ></UiButton>
                 </div>
               </div>
             </div>
@@ -166,15 +261,15 @@ function HomePage(props) {
           <Data_table
             data={filteredData}
             getSelectedRows={getSelectedRows}
-            height={400}
+            height={300}
           />
-          <div></div>
+          {/* <Data_table data={allRegionData} getSelectedRows={getSelectedRows} height={300} /> */}
         </div>
       </div>
       <div className="summary-container">
         {allRegSummaryData ? (
           <div>
-            <AllReg data={allRegSummaryData} />
+            <AllReg data={allRegSummaryData} regionCountMap={regionCountMap} />
           </div>
         ) : (
           <div>loading</div>
@@ -186,5 +281,4 @@ function HomePage(props) {
     </div>
   );
 }
-
 export default HomePage;
