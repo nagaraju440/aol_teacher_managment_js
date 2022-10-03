@@ -16,6 +16,18 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+import Navbar from "../../../UiCore/Navbar/Navbar.js";
+// import UserData from "../../Data_table/data.json";
+import Data_table from "../../Data_table/data_table";
+// console.log("Userdata iss", UserData.data);
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`,
+  };
+}
 const regions = ["All Regions", "Latam", "Europe", "Oceania", "Far East"];
 function Export(props) {
   const location = useLocation();
@@ -25,10 +37,26 @@ function Export(props) {
   const [selectedRegion, setSelectedRegion] = useState(
     location.state.selectedRegion
   );
-   console.log("location is",location.state)
+  const [filteredData, setFilteredData] = useState(location.state.selectedRows);
+
   let navigate = useNavigate();
+  // console.log("selected rows are",selectedRows)
+  const getSelectedRows = (totalData, selectedId) => {
+    // console.log(totalData, selectedId)
+    console.log("selected id is",selectedId)
+    var d = totalData.filter((data) => selectedId.includes(data.Country));
+    // console.log("d is", d);
+    setSelectedRows(d);
+  };
+  //   const tableRef = useRef(null);
+  //  const { onDownload } = useDownloadExcel({
+  //     currentTableRef: tableRef.current,
+  //     filename: "AOL Teachers Information",
+  //     sheet: "Teachers Data",
+  //   });
 
   const handleExportAllRows = () => {
+    // console.log("this is your file");
     var wb = XLSX.utils.book_new();
     var ws = XLSX.utils.json_to_sheet(regionData);
     XLSX.utils.book_append_sheet(wb, ws, "Teachers Data");
@@ -43,9 +71,16 @@ function Export(props) {
   };
 
   function handleClose() {
+    // console.log("closing");
     navigate(-1);
   }
-  
+  const handleSearch = (event) => {
+    var value = event.target.value;
+    var temp = regionData.filter((data) =>
+      data.Country.toLowerCase().includes(value.toLowerCase())
+    );
+    setFilteredData(temp);
+  };
 
   return (
     <div className="export-outer-container">
@@ -66,7 +101,19 @@ function Export(props) {
             </div>
             <div className="export-subheading-container">
               <div className="export-icon-left-container">
-               
+                <InputBase
+                  id="outlined-search"
+                  label="Search by country"
+                  placeholder="Search by country"
+                  type="search"
+                  className="export-search"
+                  startAdornment={
+                    <InputAdornment position="start">
+                      <SearchIcon />
+                    </InputAdornment>
+                  }
+                  onChange={handleSearch}
+                />
               </div>
               <div className="export-buttons-container">
                 <UiButton
@@ -74,6 +121,13 @@ function Export(props) {
                   disabled={selectedRows.length != 0 ? false : true}
                   onClick={handleExportSelectedRows}
                 ></UiButton>
+                {/* <div className="export-selectedrows-button">
+                  Export Selected Rows
+                </div>
+
+                <div className="export-allrows-button" onClick={handleExport}>
+                  Export All Rows
+                </div> */}
                 <UiButton
                   text="Export All Rows"
                   onClick={handleExportAllRows}
@@ -82,11 +136,12 @@ function Export(props) {
             </div>
           </div>
           <hr className="hr-line"></hr>
-          {/* <Data_table
-            data={regionData}
+          <Data_table
+            // data={regionData}
+            data={filteredData}
             getSelectedRows={getSelectedRows}
             height={500}
-          /> */}
+          />
 
           <div></div>
         </div>

@@ -17,14 +17,7 @@ import AllReg from "../All_register/Alreg";
 import Data_table from "../../Data_table/data_table";
 import axios from "axios";
 import tableData from "../../Data_table/data.json";
-import {GridToolbarQuickFilter} from '@mui/x-data-grid'
-import {
-  ControllerRenderProps,
-  FieldValues,
-  useController,
-  useFormContext,
-} from "react-hook-form";
-import Form from "../../../UiCore/FormComponent/FormFeild/FormFeild";
+
 function a11yProps(index) {
   return {
     id: `simple-tab-${index}`,
@@ -48,9 +41,13 @@ const regions = [
   "South Asia",
 ];
 function HomePage(props) {
+  const [value, setValue] = React.useState(0);
   const [selectedRegion, setSelectedRegion] = React.useState(0);
+  const [selectedRows, setSelectedRows] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
   const [regionData, setRegionData] = React.useState([]);
   const [allRegSummaryData, setAllRegSummaryData] = React.useState(null);
+
   const [region_countryData, setRegion_countryData] = React.useState([]);
   const [regionCountMap, setRegionCountMap] = useState({});
   const [allRegionData, setAllRegionData] = React.useState([]);
@@ -68,14 +65,26 @@ function HomePage(props) {
     var index = event.target.value;
     getData(regions[index]);
   };
+  const getSelectedRows = (totalData, selectedId) => {
+    // console.log(totalData, selectedId);
+    var d = totalData.filter((data) => selectedId.includes(data.Country));
+    setSelectedRows(d);
+  };
+
   useEffect(() => {
     const token = sessionStorage.getItem("user");
     let mounted = true;
+
+    // console.log(region_countryData, regionData, "ALL THE DATA I NEED");
     const regionCountMap = {};
     allRegionData.map((i) => {
       const itemRegionName = region_countryData.find(
         (item) => i.Country === item.countryname
       ).regionname;
+      // console.log(
+      //   region_countryData.find((item) => i.Country === item.countryname),
+      //   "im here"
+      // );
       if (regionCountMap[itemRegionName]) {
         regionCountMap[itemRegionName] =
           regionCountMap[itemRegionName] +
@@ -86,8 +95,23 @@ function HomePage(props) {
         regionCountMap[itemRegionName] = +i.Active + +i.Inactive + +i.ViewOnly;
       }
     });
+    // console.log(region_countryData, regionData, regionCountMap, 'ALL THE DATA I NEED');
+
+    // console.log("regionCountMap-->", regionCountMap);
+
+    //sorting
+    // const sortObject = (o) =>
+    //   Object.keys(o)
+    //     .sort()
+    //     .reduce((r, k) => ((r[k] = o[k]), r), {});
+    // let sorted_regioncount = sortObject(regionCountMap);
+    // console.log('sorting object', sorted_regioncount);
+    // setRegionCountMap(sorted_regioncount);
+    // console.log('sorting region count map ->', regionCountMap);
+
     if (Object.keys(regionCountMap).length != 0) {
       const sumValues = Object.values(regionCountMap).reduce((a, b) => a + b);
+      // console.log("sum values", sumValues);
       setRegionCountMap({ "All Regions Count": sumValues, ...regionCountMap });
     }
     return () => (mounted = false);
@@ -113,6 +137,7 @@ function HomePage(props) {
         });
         // console.log("temp is ", temp);
         setRegionData(temp);
+        setFilteredData(temp);
       });
   }
   function getAllData(region) {
@@ -135,6 +160,7 @@ function HomePage(props) {
         });
         // console.log("temp is ", temp);
         setAllRegionData(temp);
+        setFilteredData(temp);
       });
   }
   function getRegionCountryData() {
@@ -144,6 +170,7 @@ function HomePage(props) {
         headers: { authorization: `Bearer ${token}` },
       })
       .then((response) => {
+        // console.log("reg - country mapping", response.data);
         setRegion_countryData(response.data);
       });
   }
@@ -160,35 +187,20 @@ function HomePage(props) {
       });
   }
 
+  const handleSearch = (event) => {
+    var value = event.target.value;
+    var temp = regionData.filter((data) =>
+      data.Country.toLowerCase().includes(value.toLowerCase())
+    );
+    setFilteredData(temp);
+  };
+
+  // region_countryData;
   return (
     <div>
       <div className="home-inner-container1">
         <div className="home-inner-container2">
-          
-          <Data_table
-            data={regionData}
-            height={500}
-            toolBar={HomePageToolBar}
-          />
-        </div>
-      </div>
-      <div className="summary-container">
-        {allRegSummaryData ? (
           <div>
-            <AllReg data={allRegSummaryData} regionCountMap={regionCountMap} />
-          </div>
-        ) : (
-          <div>loading</div>
-        )}
-      </div>
-    </div>
-  );
-}
-export default HomePage;
-export const HomePageToolBar=()=>{
-  const navigate=useNavigate();
-  return(
-    <div>
             <div className="home-icon">
               <div className="home-icon-left-container">
                 <div>
@@ -197,20 +209,32 @@ export const HomePageToolBar=()=>{
                 <div className="slect-dropdown-container">
                   <Select
                     sx={{ height: 40 }}
-                    // className="select-dropdown"
+                    className="select-dropdown"
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
-                    name="region"
-                    // value={selectedRegion}
-                    // onChange={handleChangeSelect}
+                    value={selectedRegion}
+                    // label="Age"
+                    onChange={handleChangeSelect}
                     defaultValue={10}
                   >
                     {regions.map((region, index) => (
                       <MenuItem value={index}>{region}</MenuItem>
                     ))}
                   </Select>
-                  <GridToolbarQuickFilter  className="home-search" placeholder="Search by Country" variant="outlined" />
                 </div>
+                {/* <InputBase
+                  id="outlined-search"
+                  label="Search by country"
+                  placeholder="Search by country"
+                  type="search"
+                  className="home-search"
+                  startAdornment={
+                    <InputAdornment position="start">
+                      <SearchIcon />
+                    </InputAdornment>
+                  }
+                  onChange={handleSearch}
+                /> */}
               </div>
               <div className="home-export-add-container">
                 <UiButton
@@ -218,7 +242,8 @@ export const HomePageToolBar=()=>{
                   onClick={() => {
                     navigate("/home/export", {
                       state: {
-                        selectedRegion: "All Regions",
+                        selectedRows: filteredData,
+                        selectedRegion: regions[selectedRegion],
                       },
                     });
                   }}
@@ -231,8 +256,31 @@ export const HomePageToolBar=()=>{
                 </div>
               </div>
             </div>
-          <hr className="hr-line"></hr>
-
           </div>
-  )
+          <hr className="hr-line"></hr>
+          <Data_table
+            data={filteredData}
+            getSelectedRows={getSelectedRows}
+            height={500}
+          />
+          {/* <Data_table data={allRegionData} getSelectedRows={getSelectedRows} height={300} /> */}
+        </div>
+      </div>
+      <div className="summary-container">
+        {allRegSummaryData ? (
+          <div>
+            <AllReg data={allRegSummaryData} regionCountMap={regionCountMap} />
+          </div>
+        ) : (
+          <div>loading</div>
+        )}
+
+        {/* <AllReg data={allRegSummaryData||} /> */}
+        {/* <AllReg /> */}
+      </div>
+    </div>
+  );
 }
+export default HomePage;
+
+
