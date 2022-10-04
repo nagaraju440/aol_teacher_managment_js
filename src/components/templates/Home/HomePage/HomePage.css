@@ -22,7 +22,7 @@
 }
 
 .home-search{
-        width: 60%;
+        width: 300px;
         height: 45px;
         border: 1px solid black;
         border-radius: 6px;
@@ -40,11 +40,14 @@
     gap: 20px;
 }
 .slect-dropdown-container{
-    width: 60%;
+    width: 300px;
     height: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 .select-dropdown{
-    width: 100%;
+    width: 40%;
 }
 .export-button{
     height: 34px;

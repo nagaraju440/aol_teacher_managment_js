@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import UiButton from "../../../UiCore/FormComponent/UiButton/UiButton";
-import "./HomePage.css";
+// import "./HomePage.css";
 import Box from "@mui/material/Box";
 import PropTypes from "prop-types";
 import TextField from "@mui/material/TextField";
