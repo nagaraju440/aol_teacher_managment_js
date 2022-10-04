@@ -38,6 +38,7 @@ const addTotalTeachersFeild = (data) => {
 };
 function HomePage() {
   const [selectedRegion, setSelectedRegion] = React.useState(0);
+  const [selectedRows,setSelectedRows]=React.useState();
   const queryClient = useQueryClient();
   /**
    * fetching data table data using react query.
@@ -63,6 +64,7 @@ function HomePage() {
       <HomePageToolBarComponent
         selectedRegion={selectedRegion}
         handleChangeSelect={handleChangeSelect}
+        selectedRows={selectedRows}
       />
     );
   };
@@ -75,6 +77,8 @@ function HomePage() {
               data={regionData}
               height={500}
               toolBar={HomePageToolBar}
+              selectedRows={selectedRows}
+              setSelectedRows={setSelectedRows}
             />
           ) : (
             <div>Loading...</div>
@@ -91,7 +95,7 @@ function HomePage() {
 }
 export default HomePage;
 
-const HomePageToolBarComponent = ({ selectedRegion, handleChangeSelect }) => {
+const HomePageToolBarComponent = ({ selectedRegion, handleChangeSelect,selectedRows }) => {
   const navigate = useNavigate();
   return (
     <div>
@@ -131,10 +135,8 @@ const HomePageToolBarComponent = ({ selectedRegion, handleChangeSelect }) => {
               onClick={() => {
                 navigate("/home/export", {
                   state: {
-                    /**
-                     * here we have  to send one more data whihch is region data and we need to change all regions with selectbox value , check Home page copy for refrence
-                     */
-                    selectedRegion: "All Regions",
+                    selectedRegion: regions[selectedRegion],
+                    selectedRows:selectedRows
                   },
                 });
               }}

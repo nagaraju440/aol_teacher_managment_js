@@ -57,7 +57,6 @@ function AllReg(props) {
   }
     if (Object.keys(regionCountMap).length != 0) {
       const sumValues = Object.values(regionCountMap).reduce((a, b) => a + b);
-      // console.log("sum values", sumValues);
       setRegionCountMap({ "All Regions Count": sumValues, ...regionCountMap });
     }
     return () => (mounted = false);
@@ -73,7 +72,6 @@ function AllReg(props) {
         </div>
       </div>
       <div className="All-Cards-Container">
-        {/* <Cards data={props.data} regionCountMap={props.regionCountMap} /> */}
         {
           summaryData?<Cards data={summaryData} regionCountMap={regionCountMap} />:<div>Loading...</div>
         }

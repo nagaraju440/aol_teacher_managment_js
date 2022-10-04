@@ -1,32 +1,18 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import {
-  DataGrid,
-  ColDef,
-  ValueGetterParams,
-  GridColumnHeaderTitle,
-  GridColumnHeaderSortIcon,GridToolbarQuickFilter 
-} from "@mui/x-data-grid";
+  DataGrid} from "@mui/x-data-grid";
 import data from "./data.json";
-import { styled } from "@mui/system";
-import UnfoldMoreIcon from "@mui/icons-material/UnfoldMore";
 import IconButton from "@mui/material/IconButton";
-import ClearIcon from "@mui/icons-material/Clear";
 import FilterListIcon from "@mui/icons-material/FilterList";
-import Tooltip from "@mui/material/Tooltip";
 import { Menu, MenuItem } from "@mui/material";
-function QuickSearchToolbar() {
-  return (
-    <div
-    >
-      <GridToolbarQuickFilter  placeholder="Search by Country" variant="outlined" />
-    </div>
-  );
-}
 export default function Data_table(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [rowData, setRowData] = React.useState([]);
-
+  const [isParentSelectedRows,setIsParentSelectedRows]=useState(true)
+  useEffect(()=>{
+    setIsParentSelectedRows(false);
+  },[])
   function handleSortHover(event) {
     if (anchorEl !== event.currentTarget) {
       setAnchorEl(event.currentTarget);
@@ -40,7 +26,6 @@ export default function Data_table(props) {
     setAnchorEl(null);
   }
   const [selection, setselection] = useState([]);
-
   const rows = rowData.map((row) => {
     return {
       id: row.Country,
@@ -231,11 +216,12 @@ export default function Data_table(props) {
           },
         }}
         hideFooter={false}
-        selectionModel={selection}
-        onSelectionModelChange={(newSelection) => {
-          setselection(newSelection);
-          props.getSelectedRows &&
-            props.getSelectedRows(props.data, newSelection);
+        selectionModel={props.selectedRows}
+        onSelectionModelChange={(newSelection)=>{
+          /**
+           * calling props.selectedRows only after completion of  intial render  with the help of isParentSelectRows, if we didn't this consotion it is doing empty the selectedRows also.
+           */
+         !isParentSelectedRows&&props.setSelectedRows(newSelection)
         }}
       />
     </div>
