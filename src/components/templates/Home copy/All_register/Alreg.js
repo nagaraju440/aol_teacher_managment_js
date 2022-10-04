@@ -3,7 +3,7 @@ import "./Allreg.css";
 import Cards from "./Cards";
 
 function AllReg(props) {
-  // console.log("props in all reg", props.data);
+  console.log("props in all reg", props.regionCountMap);
   return (
     <div className="Background">
       <div className="AllReg-outer-contanier">

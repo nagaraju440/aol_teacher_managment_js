@@ -169,7 +169,7 @@ function HomePage(props) {
         headers: { authorization: `Bearer ${token}` },
       })
       .then((response) => {
-        // console.log("reg - country mapping", response.data);
+        console.log("reg - country mapping", response.data);
         setRegion_countryData(response.data);
       });
   }
