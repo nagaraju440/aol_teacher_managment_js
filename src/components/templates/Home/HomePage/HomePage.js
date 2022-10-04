@@ -119,8 +119,6 @@ const HomePageToolBarComponent = ({ selectedRegion, handleChangeSelect }) => {
                 ))}
               </Select>
               <GridToolbarQuickFilter
-              // style={{height:"50px"}}
-                // sx={{ height: 0 }}
                 className="home-search"
                 placeholder="Search by Country"
                 variant="outlined"

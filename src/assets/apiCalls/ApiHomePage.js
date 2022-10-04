@@ -6,7 +6,7 @@ export const getDataByRegion=({queryKey})=>{
     return request({
         url:'/home/countriesdata',
         method:'GET',
-        params: { region: "All Regions"},
+        params: { region:region},
         headers: { authorization: `Bearer ${token}` },
     })
 }
