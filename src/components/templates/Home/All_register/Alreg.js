@@ -48,6 +48,10 @@ function AllReg(props) {
     let mounted = true;
     // console.log(region_countryData, regionData, "ALL THE DATA I NEED");
     const regionCountMap = {};
+    if(allRegionData)
+    {
+
+    
     allRegionData.map((i) => {
       const itemRegionName = region_countryData.find(
         (item) => i.Country === item.countryname
@@ -66,6 +70,7 @@ function AllReg(props) {
         regionCountMap[itemRegionName] = +i.Active + +i.Inactive + +i.ViewOnly;
       }
     });
+  }
     // console.log(region_countryData, regionData, regionCountMap, 'ALL THE DATA I NEED');
 
     // console.log("regionCountMap-->", regionCountMap);
@@ -117,7 +122,7 @@ function AllReg(props) {
   //   }
   //   return () => (mounted = false);
   // }, [region_countryData, summaryData]);
-  console.log("summary dtaa us",summaryData)
+  console.log("summary dtaa",summaryData)
   return (
     <div className="Background">
       <div className="AllReg-outer-contanier">
@@ -129,7 +134,10 @@ function AllReg(props) {
       </div>
       <div className="All-Cards-Container">
         {/* <Cards data={props.data} regionCountMap={props.regionCountMap} /> */}
-        <Cards data={summaryData} regionCountMap={regionCountMap} />
+        {
+          summaryData?<Cards data={summaryData} regionCountMap={regionCountMap} />:<div>Loading...</div>
+        }
+        
       </div>
     </div>
   );
