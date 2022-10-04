@@ -74,7 +74,6 @@ function HomePage(props) {
   useEffect(() => {
     const token = sessionStorage.getItem("user");
     let mounted = true;
-
     // console.log(region_countryData, regionData, "ALL THE DATA I NEED");
     const regionCountMap = {};
     allRegionData.map((i) => {

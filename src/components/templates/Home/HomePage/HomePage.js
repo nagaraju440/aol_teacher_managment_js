@@ -9,20 +9,8 @@ import {GridToolbarQuickFilter} from '@mui/x-data-grid'
 import { getDataByRegion } from "../../../../assets/apiCalls/ApiHomePage";
 import { useQuery } from '@tanstack/react-query'
 import {useQueryClient} from '@tanstack/react-query'
-const regions = [
-  "All Regions",
-  "Africa",
-  "Brazil",
-  "Central Asia",
-  "Europe",
-  "Far East",
-  "Middle East",
-  "North America",
-  "Oceania",
-  "Russia",
-  "South America",
-  "South Asia",
-];
+import AllReg from "../All_register/Alreg";
+
 const addTotalTeachersFeild=(data)=>{
   var temp = data.map((d) => {
     return {
@@ -70,15 +58,11 @@ function HomePage() {
           }
         </div>
       </div>
-      {/* <div className="summary-container">
-        {allRegSummaryData ? (
+      <div className="summary-container">
           <div>
-            <AllReg data={allRegSummaryData} regionCountMap={regionCountMap} />
+            <AllReg  />
           </div>
-        ) : (
-          <div>loading</div>
-        )}
-      </div> */}
+      </div>
     </div>
   );
 }
@@ -142,3 +126,19 @@ const HomePageToolBarComponent=({selectedRegion,handleChangeSelect})=>{
       </div>
   )
 }
+
+
+const regions = [
+  "All Regions",
+  "Africa",
+  "Brazil",
+  "Central Asia",
+  "Europe",
+  "Far East",
+  "Middle East",
+  "North America",
+  "Oceania",
+  "Russia",
+  "South America",
+  "South Asia",
+];

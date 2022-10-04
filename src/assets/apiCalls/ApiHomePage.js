@@ -8,3 +8,17 @@ export const getDataByRegion=({queryKey})=>{
         params: { region: region},
     })
 }
+
+export const getAllRegionSummaryData=()=>{
+    return request({
+        url:'/home/masterdata',
+        method:"GET",
+    })
+}
+
+export const regionCountryData=()=>{
+    return request({
+        url:'/home/regions',
+        method:"GET"
+    })
+}
